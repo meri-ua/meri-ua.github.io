@@ -1,0 +1,8 @@
+.DS_Store
+# зібрана програма: живе тут лише між збіркою і публікацією; на сайт її копіює deploy.sh у корінь
+dist/
+node_modules/
+# тимчасові копії репо для паралельних агентів (git worktree) — живуть локально
+.claude/worktrees/
+# особисті налаштування Claude Code на цьому Mac — не для репо
+.claude/settings.local.json
