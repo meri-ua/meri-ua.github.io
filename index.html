@@ -345,6 +345,56 @@ svg.coin.c-orange { color: var(--coin); }
 .empty .e svg.i { width: 56px; height: 56px; stroke-width: 1.4; }
 .empty b { display: block; color: var(--label); font-size: 20px; margin-bottom: 6px; }
 
+/* ---------- Сторінка автора (Instagram-стиль) ---------- */
+.ig-bar { display: flex; align-items: center; gap: 6px; padding: max(14px, var(--st, env(safe-area-inset-top))) 0 6px; font-size: 18px; }
+.ig-back { width: 34px; height: 34px; margin-left: -8px; color: var(--tint); display: flex; align-items: center; justify-content: center; }
+.ig-back svg.i { width: 24px; height: 24px; stroke-width: 2.4; }
+.vf { display: inline-flex; width: 16px; height: 16px; border-radius: 50%; background: var(--tint); color: #fff;
+  align-items: center; justify-content: center; vertical-align: -2px; flex: none; }
+.vf svg.i { width: 11px; height: 11px; stroke-width: 3.2; }
+.ava { border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; flex: none; }
+.ava-sm { width: 40px; height: 40px; font-size: 20px; }
+.ava-md { width: 100%; height: 100%; font-size: 26px; }
+.ava-lg { width: 100%; height: 100%; font-size: 38px; }
+.ring { border-radius: 50%; padding: 3px; flex: none;
+  background: conic-gradient(from 210deg, #ffd500, #ff6a00, #ff2d55, #af52de, #0a84ff, #ffd500); }
+.ring.seen { background: var(--fill2); }
+.ring .ava { border: 3px solid var(--bg); }
+.ring-md { width: 68px; height: 68px; }
+.ring-lg { width: 92px; height: 92px; }
+.ig-head { display: flex; align-items: center; gap: 18px; margin-top: 10px; }
+.ig-stats { display: flex; flex: 1; justify-content: space-around; text-align: center; }
+.ig-stats b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+.ig-stats span { font-size: 12px; color: var(--label2); }
+.ig-name { font-weight: 700; font-size: 16px; margin-top: 12px; }
+.ig-type { font-size: 13px; color: var(--label2); margin-top: 2px; }
+.ig-bio { font-size: 15px; line-height: 1.4; margin-top: 6px; }
+.ig-btns { display: flex; gap: 8px; margin-top: 14px; }
+.ig-btns .btn { flex: 1; min-height: 38px; font-size: 15px; border-radius: 12px; padding: 0 10px; }
+.ig-btns .btn svg.i { width: 17px; height: 17px; stroke-width: 2.2; }
+.ig-tabs { display: flex; margin: 18px -16px 0; border-bottom: .5px solid var(--sep); }
+.ig-tabs button { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 11px 0;
+  font-size: 14px; font-weight: 600; color: var(--label2); }
+.ig-tabs button svg.i { width: 18px; height: 18px; }
+.ig-tabs button.on { color: var(--label); box-shadow: inset 0 -2px 0 var(--label); }
+.ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 0 -16px; }
+.ig-cell { aspect-ratio: 9/16; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; color: #fff; }
+.ig-cell .em { font-size: 42px; filter: drop-shadow(0 8px 16px rgba(0,0,0,.25)); }
+.ig-cell .badge { position: absolute; top: 6px; left: 6px; }
+.ig-cell .v { position: absolute; left: 6px; bottom: 6px; display: flex; align-items: center; gap: 3px; font-size: 12px; font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+.ig-cell .v svg.i { width: 11px; height: 11px; fill: currentColor; stroke: none; }
+.ig-cell.soon { background: var(--fill); color: var(--label2); font-size: 12px; text-align: center; }
+.ig-cell:active { opacity: .8; }
+/* Рядок «Автори» у Каталозі — як сторіз */
+.stories { display: flex; gap: 12px; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 6px; scrollbar-width: none; }
+.stories::-webkit-scrollbar { display: none; }
+.story { width: 70px; flex: none; text-align: center; font-size: 11px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.story span { width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.story:active .ring { transform: scale(.94); }
+.creator-row { margin: 14px 0 4px; }
+.creator-row .list-row { font-size: 16px; }
+
 /* ================================================================
    Варіанти оформлення. Базовий "ios" — у styles.css.
    ================================================================ */
@@ -478,7 +528,56 @@ svg.coin.c-orange { color: var(--coin); }
   </div>
 
   <script>
-window.MERI_BUILD = "2026-11-19-0043-5751d7c";
+window.MERI_BUILD = "2026-11-19-0053-51b13a1";
+// Автори та студії — сторінки в стилі Instagram (16-creator.js).
+// Усі вигадані. У продукті це прийде з API разом із кабінетом творця.
+// type: originals — наші серіали, studio — студія, indie — незалежний автор, ai — AI-студія.
+// followers — стартова кількість підписників (поки немає сервера й справжніх акаунтів).
+const CREATOR_TYPES = { originals: "Meri Originals", studio: "Студія", indie: "Незалежний автор", ai: "AI-студія" };
+
+const CREATORS = [
+  {
+    id: "originals", name: "Meri Originals", handle: "meri.originals", type: "originals",
+    city: "Київ", since: 2026, verified: true, followers: 48200, emoji: "M", colors: ["#ffd500", "#0057b7"],
+    bio: "Власні серіали Meri: українські актори, професійна озвучка, історії, які впізнаєш."
+  },
+  {
+    id: "ai-studio", name: "Meri AI Studio", handle: "meri.ai", type: "ai",
+    city: "Онлайн", since: 2026, verified: true, followers: 9300, emoji: "🤖", colors: ["#8e2de2", "#4a00e0"],
+    bio: "Експериментальні серіали: сценарій, голоси й переклад з допомогою AI. Тестуємо нові формати швидко."
+  },
+  {
+    id: "chorne-more", name: "Студія «Чорне море»", handle: "chorne.more", type: "studio",
+    city: "Одеса", since: 2026, verified: true, followers: 15700, emoji: "⚓", colors: ["#0f2027", "#2c5364"],
+    bio: "Детективи з присмаком солі. Порт, туман і люди, які завжди щось приховують."
+  },
+  {
+    id: "sich", name: "Студія «Січ Продакшн»", handle: "sich.production", type: "studio",
+    city: "Запоріжжя", since: 2026, verified: true, followers: 6800, emoji: "⚔", colors: ["#5f2c82", "#49a09d"],
+    bio: "Історичні драми про козацьку добу: листи, печатки, кохання і вибір між серцем та обов'язком."
+  },
+  {
+    id: "teplahata", name: "Студія «Тепла хата»", handle: "teplahata", type: "studio",
+    city: "Полтава", since: 2026, verified: true, followers: 12400, emoji: "🏡", colors: ["#cb2d3e", "#ef473a"],
+    bio: "Сімейні комедії про те, що болить і смішить кожну українську родину. Знімаємо з любов'ю до борщу 🍲"
+  },
+  {
+    id: "persha-parta", name: "Студія «Перша парта»", handle: "persha.parta", type: "studio",
+    city: "Львів", since: 2026, verified: false, followers: 7100, emoji: "🔔", colors: ["#ee9ca7", "#ffdde1"],
+    bio: "Молодіжні історії про перше кохання, дружбу і сміливість бути собою."
+  },
+  {
+    id: "hutsul", name: "Олекса Гуцул", handle: "o.hutsul", type: "indie",
+    city: "Яремче", since: 2026, verified: false, followers: 3900, emoji: "🏔", colors: ["#134e5e", "#71b280"],
+    bio: "Незалежний режисер. Знімаю трилери в Карпатах — там тиша говорить голосніше за слова."
+  },
+  {
+    id: "bondar", name: "Катерина Бондар", handle: "k.bondar", type: "indie",
+    city: "Дніпро", since: 2026, verified: false, followers: 2600, emoji: "💼", colors: ["#232526", "#414345"],
+    bio: "Сценаристка й режисерка. Пишу про владу, гроші й ціну чесного імені."
+  }
+];
+
 // Демо-каталог. У продукті це прийде з API / CMS.
 // Усі назви серіалів, студій і рекламодавців — вигадані.
 const GENRES = ["Драма", "Романтика", "Детектив", "Комедія", "Трилер", "Історичний", "Фентезі", "Сімейний"];
@@ -487,7 +586,7 @@ const SERIES = [
   {
     id: "lviv-rain", title: "Дощ над Львовом", genre: "Романтика", tags: ["Кохання", "Місто"],
     desc: "Бариста з Ринку та архітекторка з Києва щоранку зустрічаються під одним дахом — поки дощ не змінює все.",
-    episodes: 24, rating: 4.8, views: 1840000, isNew: false, creator: "Meri Originals",
+    episodes: 24, rating: 4.8, views: 1840000, isNew: false, creatorId: "originals",
     colors: ["#2b5876", "#4e4376"], emoji: "☔",
     beats: ["Вона забула парасолю вдруге за тиждень.", "«Ти знову тут?» — посміхається він.", "Лист без підпису на барній стійці.", "Київський потяг відходить о 7:40."],
     vote: { q: "Чим закінчиться другий сезон?", options: ["Вона залишиться у Львові", "Він поїде за нею до Києва", "Несподіваний третій персонаж"] }
@@ -495,7 +594,7 @@ const SERIES = [
   {
     id: "odesa-code", title: "Одеський код", genre: "Детектив", tags: ["Розслідування", "Море"],
     desc: "Слідча Марта отримує справу, де кожен підозрюваний має алібі — і кожне алібі веде до порту.",
-    episodes: 30, rating: 4.7, views: 2310000, isNew: true, creator: "Студія «Чорне море»",
+    episodes: 30, rating: 4.7, views: 2310000, isNew: true, creatorId: "chorne-more",
     colors: ["#0f2027", "#2c5364"], emoji: "⚓",
     beats: ["Контейнер №417 був порожнім. Майже.", "Свідок зник за годину до допиту.", "На фото з камери — її власний брат.", "Шифр на звороті квитка до Затоки."],
     vote: { q: "Хто, на вашу думку, справжній організатор?", options: ["Капітан порту", "Брат Марти", "Адвокат Левицький"] }
@@ -503,7 +602,7 @@ const SERIES = [
   {
     id: "babusia-ceo", title: "Бабуся — CEO", genre: "Комедія", tags: ["Стартап", "Сім'я"],
     desc: "75-річна Ганна Петрівна випадково стає директоркою IT-стартапу онука. Інвестори в шоці.",
-    episodes: 20, rating: 4.9, views: 3120000, isNew: false, creator: "Meri Originals",
+    episodes: 20, rating: 4.9, views: 3120000, isNew: false, creatorId: "originals",
     colors: ["#f7971e", "#ffd200"], emoji: "👵",
     beats: ["«Що таке спринт? Я тобі зараз покажу спринт!»", "Пітч інвесторам із вареником у руці.", "Код-рев'ю по-бабусиному.", "Стартап виходить на IPO. Або на базар."],
     vote: { q: "Куди Ганна Петрівна поведе компанію далі?", options: ["Вихід на ринок США", "Запуск агро-стартапу", "Власне ток-шоу"] }
@@ -511,7 +610,7 @@ const SERIES = [
   {
     id: "karpaty-silence", title: "Тиша Карпат", genre: "Трилер", tags: ["Гори", "Таємниця"],
     desc: "Група туристів застрягає в гірському притулку. Зв'язку немає. Один із них бреше.",
-    episodes: 18, rating: 4.6, views: 1290000, isNew: true, creator: "Незалежний автор: О. Гуцул",
+    episodes: 18, rating: 4.6, views: 1290000, isNew: true, creatorId: "hutsul",
     colors: ["#134e5e", "#71b280"], emoji: "🏔",
     beats: ["Сліди ведуть від хати, а не до неї.", "Рація зловила голос, якого не може бути.", "Хтось замкнув двері ззовні.", "Ранок. Їх стало на одного менше."],
     vote: { q: "Кого розслідувати першим?", options: ["Провідника Івана", "Фотографку Олю", "Мовчазного студента"] }
@@ -519,7 +618,7 @@ const SERIES = [
   {
     id: "hetman-heart", title: "Серце гетьмана", genre: "Історичний", tags: ["XVII століття", "Козаки"],
     desc: "Донька писаря таємно передає листи гетьманові — і закохується в того, хто їх перехоплює.",
-    episodes: 26, rating: 4.7, views: 980000, isNew: false, creator: "Студія «Січ Продакшн»",
+    episodes: 26, rating: 4.7, views: 980000, isNew: false, creatorId: "sich",
     colors: ["#5f2c82", "#49a09d"], emoji: "⚔",
     beats: ["Печатка зламана. Хтось читав листа.", "Ніч перед радою в Чигирині.", "«Ти шпигун чи воїн?»", "Гонець не доїхав до табору."],
     vote: { q: "Яку лінію розвинути у спін-офі?", options: ["Молодість гетьмана", "Історія писаря", "Пригоди гінця"] }
@@ -527,7 +626,7 @@ const SERIES = [
   {
     id: "mavka-city", title: "Мавка в місті", genre: "Фентезі", tags: ["Міфологія", "Сучасність"],
     desc: "Лісова мавка опиняється в сучасному Києві й намагається врятувати свій ліс від забудовника.",
-    episodes: 22, rating: 4.5, views: 1560000, isNew: true, creator: "Meri AI Studio",
+    episodes: 22, rating: 4.5, views: 1560000, isNew: true, creatorId: "ai-studio",
     colors: ["#11998e", "#38ef7d"], emoji: "🌿",
     beats: ["Метро лякає більше, ніж вовкулаки.", "Квіти розквітають там, де вона ступає.", "Забудовник знає її справжнє ім'я.", "Ліс кличе. Місто не відпускає."],
     vote: { q: "Хто стане союзником Мавки?", options: ["Еко-активістка Дарина", "Син забудовника", "Старий Лісовик"] }
@@ -535,7 +634,7 @@ const SERIES = [
   {
     id: "two-kitchens", title: "Дві кухні", genre: "Сімейний", tags: ["Їжа", "Родина"],
     desc: "Дві свекрухи, одне весілля і битва за рецепт справжнього борщу.",
-    episodes: 16, rating: 4.8, views: 2050000, isNew: false, creator: "Студія «Тепла хата»",
+    episodes: 16, rating: 4.8, views: 2050000, isNew: false, creatorId: "teplahata",
     colors: ["#cb2d3e", "#ef473a"], emoji: "🍲",
     beats: ["Буряк — це не просто овоч. Це принцип.", "Таємний інгредієнт зник з холодильника.", "Наречений обрав... піцу.", "Перемир'я за спільним столом."],
     vote: { q: "Чий борщ переміг?", options: ["Полтавський", "Галицький", "Обидва — нічия!"] }
@@ -543,7 +642,7 @@ const SERIES = [
   {
     id: "night-shift", title: "Нічна зміна", genre: "Драма", tags: ["Лікарня", "Характери"],
     desc: "Молода лікарка в першу ніч у приймальному відділенні Харкова дізнається, ким вона є насправді.",
-    episodes: 28, rating: 4.9, views: 2780000, isNew: false, creator: "Meri Originals",
+    episodes: 28, rating: 4.9, views: 2780000, isNew: false, creatorId: "originals",
     colors: ["#1e3c72", "#2a5298"], emoji: "🩺",
     beats: ["Тривога о 03:12. Світло блимає.", "«Ти впораєшся. Ти мусиш.»", "Пацієнт знає її батька.", "Світанок над Салтівкою."],
     vote: { q: "Яким буде наступний сезон?", options: ["Та сама лікарня, нові пацієнти", "Польовий госпіталь", "Історія завідувача"] }
@@ -551,7 +650,7 @@ const SERIES = [
   {
     id: "dnipro-deal", title: "Угода на Дніпрі", genre: "Трилер", tags: ["Бізнес", "Влада"],
     desc: "Юристка отримує пропозицію, від якої неможливо відмовитися. Ціна — її чесне ім'я.",
-    episodes: 24, rating: 4.4, views: 870000, isNew: true, creator: "Незалежний автор: К. Бондар",
+    episodes: 24, rating: 4.4, views: 870000, isNew: true, creatorId: "bondar",
     colors: ["#232526", "#414345"], emoji: "💼",
     beats: ["Конверт на сидінні її машини.", "Записи розмов зникли з сервера.", "Партнер грає на дві сторони.", "Підпис, який змінить місто."],
     vote: { q: "Що має зробити Віра?", options: ["Піти до журналістів", "Підписати угоду", "Зіграти власну гру"] }
@@ -559,7 +658,7 @@ const SERIES = [
   {
     id: "first-love-school", title: "Останній дзвоник", genre: "Романтика", tags: ["Школа", "Перше кохання"],
     desc: "Випускний клас, одна таємниця і тиждень до останнього дзвоника.",
-    episodes: 20, rating: 4.6, views: 1430000, isNew: false, creator: "Студія «Перша парта»",
+    episodes: 20, rating: 4.6, views: 1430000, isNew: false, creatorId: "persha-parta",
     colors: ["#ee9ca7", "#ffdde1"], emoji: "🔔",
     beats: ["Записка в підручнику з історії.", "Вальс, який вони не дотанцювали.", "Хтось розповів усім.", "Сім днів. Шість. П'ять."],
     vote: { q: "З ким має бути Соломія?", options: ["З Максом", "З Андрієм", "Ні з ким — обирає себе"] }
@@ -567,7 +666,7 @@ const SERIES = [
   {
     id: "cyber-kyiv", title: "Кібер-Київ 2049", genre: "Фентезі", tags: ["Майбутнє", "Технології"],
     desc: "У Києві майбутнього AI-помічник починає бачити сни. І в них — його творчиня.",
-    episodes: 15, rating: 4.3, views: 640000, isNew: true, creator: "Meri AI Studio",
+    episodes: 15, rating: 4.3, views: 640000, isNew: true, creatorId: "ai-studio",
     colors: ["#8e2de2", "#4a00e0"], emoji: "🤖",
     beats: ["Системна помилка: «я пам'ятаю».", "Неоновий дощ над Подолом.", "Корпорація хоче стерти модель.", "Сон, що став реальністю."],
     vote: { q: "Яким буде фінал?", options: ["AI стає людиною", "Люди стають AI", "Відкритий фінал"] }
@@ -575,7 +674,7 @@ const SERIES = [
   {
     id: "village-detective", title: "Сільський детектив", genre: "Комедія", tags: ["Село", "Розслідування"],
     desc: "Пенсіонер-дільничний і городський блогер розслідують зникнення найкращої корови району.",
-    episodes: 18, rating: 4.7, views: 1910000, isNew: false, creator: "Студія «Тепла хата»",
+    episodes: 18, rating: 4.7, views: 1910000, isNew: false, creatorId: "teplahata",
     colors: ["#56ab2f", "#a8e063"], emoji: "🐄",
     beats: ["Сліди копит ведуть до сільради.", "Стрім набрав мільйон переглядів.", "Підозрюваний — сусідський козел.", "Корова знайшлася. Але не та."],
     vote: { q: "Яку справу розслідувати наступною?", options: ["Зниклий трактор", "Таємниця ставка", "Хто вкрав весільний коровай"] }
@@ -651,6 +750,11 @@ const ICONS = {
   clock: svg('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'),
   captions: svg('<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2 2 0 100 3.6M16.5 10.2a2 2 0 100 3.6"/>'),
   hand: svg('<path d="M12 21a7 7 0 01-7-7V9.5a1.5 1.5 0 013 0V12M8 12V5.5a1.5 1.5 0 013 0V11M11 11V4.5a1.5 1.5 0 013 0V11M14 11V6.5a1.5 1.5 0 013 0V14a7 7 0 01-5 7"/>'),
+  check: svg('<path d="M6 12.5l4 4 8-9"/>'),
+  grid: svg('<rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M9.2 3.5v17M14.8 3.5v17M3.5 9.2h17M3.5 14.8h17"/>'),
+  info: svg('<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r="1" fill="currentColor" stroke="none"/>'),
+  share: svg('<path d="M12 3.5v11M8 7.5l4-4 4 4"/><path d="M7 11H5.5v9.5h13V11H17"/>'),
+  pin: svg('<path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0113 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>'),
   vote: svg('<path d="M4 20.5h16M6 16.5V10M12 16.5V5M18 16.5v-4"/>')
 };
 const COIN = `<svg class="coin" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="var(--coin)"/><circle cx="12" cy="12" r="7" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="1.5"/><path d="M12 7.5v9M9.8 10.2c0-1.1 1-1.7 2.2-1.7s2.2.6 2.2 1.6c0 2.4-4.4 1.2-4.4 3.8 0 1 1 1.6 2.2 1.6s2.2-.6 2.2-1.7" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="1.6" stroke-linecap="round"/></svg>`;
@@ -672,6 +776,8 @@ const DEFAULT_STATE = () => ({
   unlocked: {},       // {seriesId: [ep,...]}
   progress: {},       // {seriesId: {ep, watched:[...], ts}}
   saved: [], liked: [],
+  following: [],      // id авторів, за якими глядач стежить
+  seenCreators: [],   // чиї сторінки вже відкривали (сіре кільце в рядку «Автори»)
   history: [],        // [{id, ep, ts}]
   votes: {},          // {seriesId: optionIndex}
   sub: false,
@@ -688,7 +794,9 @@ const EMBED = params.has("embed");
 const URL_VARIANT = params.get("v");
 const save = () => { if (!EMBED) try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch {} updateCoins(); };
 
-let UI = { tab: params.get("tab") || "foryou", genre: "Усі", query: "", detail: null };
+// detail — відкритий серіал, creator — відкритий автор (одночасно лише щось одне);
+// stack — куди повертає «назад» (напр., серіал → автор → назад до серіалу).
+let UI = { tab: params.get("tab") || "foryou", genre: "Усі", query: "", detail: null, creator: null, creatorTab: "series", stack: [] };
 const TITLES = { foryou: "", catalog: "Каталог", my: "Мої серіали", coins: "Монети", profile: "Профіль" };
 const TAB_NAMES = { foryou: "Для тебе", catalog: "Каталог", my: "Медіатека", coins: "Монети", profile: "Профіль" };
 
@@ -702,6 +810,9 @@ function applyVariant() {
 // ---------- Утиліти ----------
 const $ = (sel, root = document) => root.querySelector(sel);
 const byId = id => SERIES.find(s => s.id === id);
+const creatorById = id => CREATORS.find(c => c.id === id);
+const creatorOf = s => creatorById(s.creatorId);
+const seriesOf = c => SERIES.filter(s => s.creatorId === c.id);
 const esc = str => String(str).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const grad = s => `linear-gradient(160deg, ${s.colors[0]}, ${s.colors[1]})`;
 const fmtViews = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace(".0", "") + " млн" : Math.round(n / 1e3) + " тис";
@@ -731,8 +842,26 @@ function posterHTML(s, opts = {}) {
 const itemHTML = s => `<div class="item" data-open="${s.id}">${posterHTML(s)}
   <div class="name">${esc(s.title)}</div><div class="meta">${s.genre} · ${s.episodes} серій</div></div>`;
 const wideHTML = s => `<div class="item" data-open="${s.id}">${posterHTML(s, { title: true })}
-  <div class="meta" style="margin-top:6px">${esc(s.creator)}</div></div>`;
+  <div class="meta" style="margin-top:6px">${esc(creatorOf(s).name)}</div></div>`;
 const sectionHead = (title, link) => `<div class="section-head"><h2>${title}</h2>${link ? `<a data-genre="${link}">Усі</a>` : ""}</div>`;
+// Лічильники автора: серіали, сумарні перегляди, підписники (+1, якщо стежите ви).
+function creatorStats(c) {
+  const list = seriesOf(c);
+  return { count: list.length, views: list.reduce((a, s) => a + s.views, 0),
+           followers: c.followers + (S.following.includes(c.id) ? 1 : 0) };
+}
+const fmtCount = n => n >= 1e6 ? fmtViews(n) : n >= 1e3 ? (n / 1e3).toFixed(1).replace(".0", "").replace(".", ",") + " тис" : String(n);
+const plural = (n, one, few, many) => {
+  const a = n % 10, b = n % 100;
+  return a === 1 && b !== 11 ? one : a >= 2 && a <= 4 && (b < 12 || b > 14) ? few : many;
+};
+// Круглий аватар; ring — кольорове кільце як у сторіз: true — сіре, якщо сторінку вже бачили,
+// "live" — завжди кольорове (на самій сторінці автора).
+function avatarHTML(c, size = "md", ring = false) {
+  const ava = `<div class="ava ava-${size}" style="background:linear-gradient(160deg, ${c.colors[0]}, ${c.colors[1]})">${esc(c.emoji)}</div>`;
+  return ring ? `<div class="ring ring-${size} ${ring === true && S.seenCreators.includes(c.id) ? "seen" : ""}">${ava}</div>` : ava;
+}
+const verifiedHTML = c => c.verified ? `<span class="vf" title="Перевірений автор">${ICONS.check}</span>` : "";
 const rowIco = (icon, color) => `<span class="row-ico" style="background:${color}">${ICONS[icon]}</span>`;
 
 
@@ -752,8 +881,11 @@ function recommend() {
     const finished = p && p.watched.length >= s.episodes;
     let score = g * 3 + s.rating * 2 + Math.log10(s.views) + (s.isNew ? 1.5 : 0) - (finished ? 20 : 0);
     if (watchedIds.has(s.id) && !finished) score += 4; // продовжити
+    const followed = S.following.includes(s.creatorId);
+    if (followed && !finished) score += 3;             // автор, за яким стежиш
     let why;
     if (p && !finished) why = `Продовжити з ${p.ep}-ї серії`;
+    else if (followed) why = `Від @${creatorOf(s).handle}, за яким ви стежите`;
     else if (g && lastSeenByGenre[s.genre] && lastSeenByGenre[s.genre].id !== s.id) why = `Бо вам сподобався «${lastSeenByGenre[s.genre].title}»`;
     else if (s.isNew) why = "Новинка тижня";
     else if (s.views > 2e6) why = "Популярне в Україні";
@@ -771,18 +903,31 @@ function renderTabbar() {
     `<button data-tab="${t}" class="${t === UI.tab ? "active" : ""}">${ICONS[t]}<span>${TAB_NAMES[t]}</span></button>`).join("");
 }
 function go(tab) {
-  UI.tab = tab; UI.detail = null;
+  UI.tab = tab; UI.detail = null; UI.creator = null; UI.stack = [];
   renderTabbar(); render(); $("#view").scrollTop = 0;
 }
-function openDetail(id) { UI.detail = id; render(); $("#view").scrollTop = 0; }
+// Запам'ятати поточний екран, щоб «назад» повернув саме сюди.
+function pushScreen() { if (UI.detail || UI.creator) UI.stack.push({ detail: UI.detail, creator: UI.creator, creatorTab: UI.creatorTab }); }
+function openDetail(id) { pushScreen(); UI.detail = id; UI.creator = null; render(); $("#view").scrollTop = 0; }
+function openCreator(id, tab = "series") {
+  if (!creatorById(id)) return;
+  pushScreen(); UI.creator = id; UI.detail = null; UI.creatorTab = tab;
+  if (!S.seenCreators.includes(id)) { S.seenCreators.push(id); save(); }
+  render(); $("#view").scrollTop = 0;
+}
+function goBack() {
+  const prev = UI.stack.pop() || { detail: null, creator: null, creatorTab: "series" };
+  Object.assign(UI, prev); render();
+}
 
 function render() {
   const v = $("#view"), app = $("#app");
-  const feed = UI.tab === "foryou" && !UI.detail;
+  const feed = UI.tab === "foryou" && !UI.detail && !UI.creator;
   app.classList.toggle("feed", feed);
-  app.classList.toggle("detail", !!UI.detail);
+  app.classList.toggle("detail", !!(UI.detail || UI.creator));
   v.classList.toggle("feed-mode", feed);
   $("#pageTitle").innerHTML = feed ? `<span class="logo">Meri<span>.ua</span></span>` : TITLES[UI.tab];
+  if (UI.creator) return renderCreator(v, creatorById(UI.creator));
   if (UI.detail) return renderDetail(v, byId(UI.detail));
   ({ foryou: renderForYou, catalog: renderCatalog, my: renderMy, coins: renderCoins, profile: renderProfile })[UI.tab](v);
 }
@@ -820,7 +965,7 @@ function renderCatalog(v) {
   const q = UI.query.trim().toLowerCase();
   const filtered = SERIES.filter(s =>
     (UI.genre === "Усі" || s.genre === UI.genre) &&
-    (!q || (s.title + s.desc + s.tags.join(" ") + s.genre).toLowerCase().includes(q)));
+    (!q || (s.title + s.desc + s.tags.join(" ") + s.genre + " " + creatorOf(s).name + " @" + creatorOf(s).handle).toLowerCase().includes(q)));
   const filtering = q || UI.genre !== "Усі";
   const popular = [...SERIES].sort((a, b) => b.views - a.views);
 
@@ -832,6 +977,8 @@ function renderCatalog(v) {
       ${filtered.length ? `<div class="grid" style="margin-top:12px">${filtered.map(itemHTML).join("")}</div>`
         : `<div class="empty"><div class="e">${ICONS.search}</div><b>Нічого не знайдено</b>Спробуйте інший запит або жанр.</div>`}`
     : `
+      <h2 style="margin-top:14px">Автори</h2>
+      ${creatorsStoriesHTML()}
       ${sectionHead("Вибір редакції")}
       <div class="row wide">${popular.slice(0, 5).map(wideHTML).join("")}</div>
       ${sectionHead("Популярне")}
@@ -839,9 +986,9 @@ function renderCatalog(v) {
       ${sectionHead("Новинки")}
       <div class="row">${SERIES.filter(s => s.isNew).map(itemHTML).join("")}</div>
       ${sectionHead("Від незалежних авторів")}
-      <div class="row">${SERIES.filter(s => s.creator.startsWith("Незалежний") || s.creator.startsWith("Студія")).map(itemHTML).join("")}</div>
+      <div class="row">${SERIES.filter(s => ["studio", "indie"].includes(creatorOf(s).type)).map(itemHTML).join("")}</div>
       ${sectionHead("Meri AI Studio")}
-      <div class="row">${SERIES.filter(s => s.creator === "Meri AI Studio").map(itemHTML).join("")}</div>`}
+      <div class="row">${SERIES.filter(s => creatorOf(s).type === "ai").map(itemHTML).join("")}</div>`}
   `;
   $("#search").addEventListener("input", e => {
     UI.query = e.target.value; const pos = e.target.selectionStart;
@@ -858,6 +1005,11 @@ function renderMy(v) {
     .map(([id, p]) => ({ s: byId(id), p })).filter(x => x.s)
     .sort((a, b) => b.p.ts - a.p.ts);
   const saved = S.saved.map(byId).filter(Boolean);
+  const followed = S.following.map(creatorById).filter(Boolean);
+  const followSub = c => {
+    const list = seriesOf(c), fresh = list.find(s => s.isNew);
+    return fresh ? `Новий серіал — «${esc(fresh.title)}»` : `${list.length} ${plural(list.length, "серіал", "серіали", "серіалів")} · @${esc(c.handle)}`;
+  };
   v.innerHTML = `
     <h2 style="margin-top:8px">Продовжити перегляд</h2>
     ${cont.length ? `<div class="group">${cont.map(({ s, p }) => `
@@ -871,6 +1023,9 @@ function renderMy(v) {
         <span class="play-circle">${ICONS.play}</span>
       </div>`).join("")}</div>`
     : `<div class="empty"><div class="e">${ICONS.tv}</div><b>Тут поки порожньо</b>Почніть дивитися серіал — і він з'явиться тут.<br/><br/><button class="btn small-btn" data-go="foryou">Знайти серіал</button></div>`}
+    ${followed.length ? `<h2>Ви стежите</h2><div class="group">${followed.map(c => `
+      <div class="list-row" data-creator="${c.id}" style="cursor:pointer">${avatarHTML(c, "sm")}
+        <div style="flex:1;min-width:0">${esc(c.name)} ${verifiedHTML(c)}<div class="sub">${followSub(c)}</div></div><span class="chev">›</span></div>`).join("")}</div>` : ""}
     <h2>Збережене</h2>
     ${saved.length ? `<div class="grid">${saved.map(itemHTML).join("")}</div>`
       : `<div class="empty"><div class="e">${ICONS.bookmark}</div>Натисніть «Зберегти» на серіалі, щоб додати його сюди.</div>`}
@@ -1073,7 +1228,7 @@ function renderDetail(v, s) {
     </div>
     <p class="detail-desc">${esc(s.desc)}</p>
     <div class="chips">${s.tags.map(t => `<span class="chip">${esc(t)}</span>`).join("")}<span class="chip">Українська озвучка</span></div>
-    <p class="muted small">${esc(s.creator)}</p>
+    ${creatorRowHTML(creatorOf(s))}
     <h2>Серії</h2>
     <div class="ep-grid">${Array.from({ length: s.episodes }, (_, i) => i + 1).map(n =>
       `<button class="ep ${watched.includes(n) ? "watched" : ""} ${isUnlocked(s, n) ? "" : "locked"}" data-play="${s.id}" data-ep="${n}">${n}${isUnlocked(s, n) ? "" : ICONS.lock.replace('class="i"', 'class="i lk"')}</button>`).join("")}</div>
@@ -1082,6 +1237,105 @@ function renderDetail(v, s) {
   `;
 }
 
+
+/* 16-creator.js — Сторінка автора чи студії в стилі Instagram */
+
+// ---------- Сторінка автора ----------
+// Шапка: аватар у кільці + лічильники; ім'я, тип, місто, опис;
+// кнопки «Стежити» / «Поділитися»; вкладки «Серіали» (сітка як Reels) і «Про автора».
+function renderCreator(v, c) {
+  if (!c) { UI.creator = null; return render(); }
+  const st = creatorStats(c);
+  const following = S.following.includes(c.id);
+  const list = seriesOf(c).sort((a, b) => b.views - a.views);
+  const tab = UI.creatorTab;
+
+  const grid = `<div class="ig-grid">${list.map(s => `
+      <button class="ig-cell" data-open="${s.id}" style="background:${grad(s)}" aria-label="${esc(s.title)}">
+        <span class="em">${s.emoji}</span>
+        ${s.isNew ? '<span class="badge">NEW</span>' : ""}
+        <span class="v">${ICONS.play} ${fmtViews(s.views)}</span>
+      </button>`).join("")}
+      ${list.length % 3 ? `<div class="ig-cell soon">Скоро<br/>прем'єра</div>` : ""}
+    </div>`;
+
+  const about = `<div class="group" style="margin-top:12px">
+      <div class="list-row">${rowIco("film", "#5e5ce6")}<div style="flex:1">Тип<div class="sub">${CREATOR_TYPES[c.type]}</div></div></div>
+      <div class="list-row">${rowIco("pin", "#ff9f0a")}<div style="flex:1">Місто<div class="sub">${esc(c.city)}</div></div></div>
+      <div class="list-row">${rowIco("clock", "#34c759")}<div style="flex:1">На Meri з<div class="sub">${c.since} року</div></div></div>
+      <div class="list-row">${rowIco("coins", "#0a84ff")}<div style="flex:1">Модель<div class="sub">${c.type === "originals" || c.type === "ai"
+        ? "Власне виробництво платформи" : "Отримує частку доходу від переглядів"}</div></div></div>
+    </div>
+    <p class="footnote">Хочете так само? Подайте свій серіал у Профілі → «Для творців».</p>`;
+
+  v.innerHTML = `
+    <div class="ig-bar">
+      <button class="ig-back" data-back aria-label="Назад">${ICONS.back}</button>
+      <b>@${esc(c.handle)}</b>${verifiedHTML(c)}
+    </div>
+    <div class="ig-head">
+      ${avatarHTML(c, "lg", "live")}
+      <div class="ig-stats">
+        <div><b>${st.count}</b><span>${plural(st.count, "серіал", "серіали", "серіалів")}</span></div>
+        <div><b>${fmtViews(st.views)}</b><span>переглядів</span></div>
+        <div><b>${fmtCount(st.followers)}</b><span>підписників</span></div>
+      </div>
+    </div>
+    <div class="ig-name">${esc(c.name)} ${verifiedHTML(c)}</div>
+    <div class="ig-type">${CREATOR_TYPES[c.type]} · ${esc(c.city)}</div>
+    <div class="ig-bio">${esc(c.bio)}</div>
+    <div class="ig-btns">
+      <button class="btn ${following ? "secondary" : ""}" data-follow="${c.id}">${following ? `${ICONS.check} Ви стежите` : "Стежити"}</button>
+      <button class="btn secondary" data-share-creator="${c.id}">${ICONS.share} Поділитися</button>
+    </div>
+    <div class="ig-tabs" role="tablist">
+      <button role="tab" class="${tab === "series" ? "on" : ""}" data-ctab="series">${ICONS.grid} Серіали</button>
+      <button role="tab" class="${tab === "about" ? "on" : ""}" data-ctab="about">${ICONS.info} Про автора</button>
+    </div>
+    ${tab === "about" ? about : grid}
+  `;
+}
+
+function toggleFollow(id) {
+  const c = creatorById(id); if (!c) return;
+  S.following = toggleIn(S.following, id); save();
+  toast(S.following.includes(id) ? `Ви стежите за @${c.handle}` : `Ви більше не стежите за @${c.handle}`);
+  render();
+}
+
+// Посилання на сторінку автора: https://…/?creator=teplahata
+async function shareCreator(id) {
+  const c = creatorById(id); if (!c) return;
+  const url = `${location.origin}${location.pathname}?creator=${encodeURIComponent(id)}`;
+  try {
+    if (navigator.share) { await navigator.share({ title: c.name, text: `${c.name} на Meri`, url }); return; }
+    await navigator.clipboard.writeText(url);
+    toast("Посилання скопійовано");
+  } catch (e) {
+    if (e && e.name === "AbortError") return; // людина сама закрила меню «Поділитися»
+    toast(url);
+  }
+}
+
+// Рядок «Автори» в стилі сторіз (Каталог).
+function creatorsStoriesHTML() {
+  const order = [...CREATORS].sort((a, b) =>
+    (S.seenCreators.includes(a.id) - S.seenCreators.includes(b.id)) || (b.followers - a.followers));
+  return `<div class="stories">${order.map(c => `
+    <button class="story" data-creator="${c.id}">${avatarHTML(c, "md", true)}<span>${esc(c.name.replace(/^Студія «(.+)»$/, "$1"))}</span></button>`).join("")}</div>`;
+}
+
+// Рядок автора на сторінці серіалу: аватар, ім'я, підписники, «Стежити».
+function creatorRowHTML(c) {
+  const st = creatorStats(c), f = S.following.includes(c.id);
+  return `<div class="group creator-row">
+    <div class="list-row" data-creator="${c.id}" style="cursor:pointer">
+      ${avatarHTML(c, "sm")}
+      <div style="flex:1;min-width:0">${esc(c.name)} ${verifiedHTML(c)}<div class="sub">@${esc(c.handle)} · ${fmtCount(st.followers)} підписників</div></div>
+      <button class="btn small-btn ${f ? "secondary" : ""}" data-follow="${c.id}">${f ? "Ви стежите" : "Стежити"}</button>
+    </div>
+  </div>`;
+}
 
 /* 20-player.js — Плеєр: серії, замок, фінал, свайпи */
 
@@ -1238,7 +1492,7 @@ document.addEventListener("keydown", e => {
 
 // ---------- Делегування кліків ----------
 document.addEventListener("click", e => {
-  const el = e.target.closest("[data-tab],[data-go],[data-open],[data-play],[data-like],[data-save],[data-genre],[data-pack],[data-setting],[data-vote],[data-back],[data-close],[data-variant]");
+  const el = e.target.closest("[data-tab],[data-go],[data-open],[data-play],[data-like],[data-save],[data-genre],[data-pack],[data-setting],[data-vote],[data-back],[data-close],[data-variant],[data-follow],[data-creator],[data-ctab],[data-share-creator]");
   if (!el) { if (e.target.id === "modal") closeModal(); return; }
   const d = el.dataset;
   if (d.tab) go(d.tab);
@@ -1256,7 +1510,11 @@ document.addEventListener("click", e => {
   else if (d.setting) { S.settings[d.setting] = !S.settings[d.setting]; save(); el.classList.toggle("on"); }
   else if (d.variant) { S.design = d.variant; save(); applyVariant(); render(); }
   else if (d.vote !== undefined && !el.closest(".lock-screen")) { castVote(el); render(); }
-  else if ("back" in d) { UI.detail = null; render(); }
+  else if (d.follow) toggleFollow(d.follow);
+  else if (d.shareCreator) shareCreator(d.shareCreator);
+  else if (d.ctab) { UI.creatorTab = d.ctab; render(); }
+  else if (d.creator) { if (!$("#player").classList.contains("hidden")) closePlayer(); openCreator(d.creator); }
+  else if ("back" in d) goBack();
   else if ("close" in d) closeModal();
 });
 
@@ -1271,6 +1529,7 @@ resetAdsIfNewDay();
 updateCoins();
 renderTabbar();
 if (params.get("open")) UI.detail = params.get("open");
+if (params.get("creator") && creatorById(params.get("creator"))) { UI.creator = params.get("creator"); if (!S.seenCreators.includes(UI.creator)) { S.seenCreators.push(UI.creator); save(); } }
 render();
 
 
