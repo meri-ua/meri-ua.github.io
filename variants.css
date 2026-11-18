@@ -1,0 +1,111 @@
+/* ================================================================
+   Варіанти оформлення. Базовий "ios" — у styles.css.
+   ================================================================ */
+
+/* ---------- Варіант B: Cinema (у дусі Apple TV / Music) ---------- */
+#app[data-variant="music"] {
+  color-scheme: dark;
+  --bg: #000; --bg-elev: #161618; --bg-elev2: #232326;
+  --fill: rgba(255,255,255,.1); --fill2: rgba(255,255,255,.18);
+  --label: #fff; --label2: rgba(235,235,245,.6); --label3: rgba(235,235,245,.3);
+  --sep: rgba(255,255,255,.12); --tint: #fa2d48; --coin: #ffd60a; --green: #30d158;
+  --material: rgba(18,18,20,.82); --r: 12px;
+  color: var(--label);
+}
+#app[data-variant="music"] .large-title { font-size: 30px; font-weight: 800; letter-spacing: -.02em; }
+#app[data-variant="music"] h2 { font-size: 21px; font-weight: 800; margin-top: 30px; }
+#app[data-variant="music"] .section-head h2::after { content: " ›"; color: var(--label2); font-weight: 600; }
+#app[data-variant="music"] .row .item { flex-basis: 44%; }
+#app[data-variant="music"] .row.wide .item { flex-basis: 88%; }
+#app[data-variant="music"] .row.wide .poster { aspect-ratio: 16/9; border-radius: 10px; }
+#app[data-variant="music"] .poster { border-radius: 8px; box-shadow: 0 10px 24px rgba(0,0,0,.5); }
+#app[data-variant="music"] .grid { grid-template-columns: repeat(2, 1fr); gap: 20px 14px; }
+#app[data-variant="music"] .item .name { font-size: 14px; }
+#app[data-variant="music"] .chip { background: transparent; box-shadow: inset 0 0 0 1px var(--sep); }
+#app[data-variant="music"] .chip.active { background: var(--tint); color: #fff; box-shadow: none; }
+#app[data-variant="music"] .btn { border-radius: 10px; }
+#app[data-variant="music"] .btn.small-btn { border-radius: 999px; }
+#app[data-variant="music"] .balance { background: linear-gradient(135deg, #fa2d48, #a1112b); box-shadow: 0 16px 40px rgba(250,45,72,.3); border-radius: 14px; }
+#app[data-variant="music"] .sub-card { background: linear-gradient(135deg, #2b0a10, #1a1a1c 60%); border-radius: 14px; }
+#app[data-variant="music"] .sub-card::after { background: radial-gradient(circle, rgba(250,45,72,.6), transparent 70%); }
+#app[data-variant="music"] .hero { min-height: 480px; text-align: left; align-items: flex-start; }
+#app[data-variant="music"] .hero h1 { font-size: 34px; color: #fff; }
+#app[data-variant="music"] .slide .why { color: var(--tint); }
+#app[data-variant="music"] .slide .btn.white { background: var(--tint); color: #fff; }
+#app[data-variant="music"] .ep { border-radius: 8px; }
+#app[data-variant="music"] .toast { background: rgba(40,40,42,.9); color: #fff; }
+#app[data-variant="music"] .tabbar { background: rgba(18,18,20,.88); border-top-color: rgba(255,255,255,.08); }
+#app[data-variant="music"] .tabbar button { color: rgba(255,255,255,.5); }
+#app[data-variant="music"] .tabbar button.active { color: var(--tint); }
+#app[data-variant="music"] .sheet { background: #1c1c1e; }
+
+/* ---------- Варіант C: Liquid Glass (скло, плаваючий таб-бар) ---------- */
+#app[data-variant="glass"] {
+  --tint: #5e5ce6; --r: 24px;
+  --glass: rgba(255,255,255,.55); --glass-line: rgba(255,255,255,.7);
+  background:
+    radial-gradient(60% 40% at 0% 0%, rgba(94,92,230,.35), transparent 70%),
+    radial-gradient(50% 35% at 100% 30%, rgba(255,159,10,.28), transparent 70%),
+    radial-gradient(60% 40% at 30% 100%, rgba(48,209,88,.22), transparent 70%),
+    #eef0f7;
+}
+@media (prefers-color-scheme: dark) {
+  #app[data-variant="glass"] {
+    --tint: #7d7aff; --glass: rgba(44,44,52,.5); --glass-line: rgba(255,255,255,.12);
+    background:
+      radial-gradient(60% 40% at 0% 0%, rgba(94,92,230,.45), transparent 70%),
+      radial-gradient(50% 35% at 100% 30%, rgba(255,120,10,.25), transparent 70%),
+      radial-gradient(60% 40% at 30% 100%, rgba(48,209,88,.18), transparent 70%),
+      #07070b;
+  }
+}
+#app[data-variant="glass"] .topbar { background: transparent; }
+#app[data-variant="glass"] #view { padding-bottom: 120px; }
+#app[data-variant="glass"] #view.feed-mode { padding-bottom: 0; }
+#app[data-variant="glass"] .card,
+#app[data-variant="glass"] .group,
+#app[data-variant="glass"] .ep {
+  background: var(--glass); backdrop-filter: blur(30px) saturate(180%); -webkit-backdrop-filter: blur(30px) saturate(180%);
+  box-shadow: inset 0 0 0 1px var(--glass-line), 0 8px 24px rgba(0,0,0,.06);
+}
+#app[data-variant="glass"] .ep { border-radius: 14px; }
+#app[data-variant="glass"] .ep.watched { background: var(--tint); }
+#app[data-variant="glass"] .search, #app[data-variant="glass"] .chip {
+  background: var(--glass); box-shadow: inset 0 0 0 1px var(--glass-line); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+}
+#app[data-variant="glass"] .chip.active { background: var(--tint); color: #fff; }
+#app[data-variant="glass"] .coin-pill { background: var(--glass); box-shadow: inset 0 0 0 1px var(--glass-line); backdrop-filter: blur(20px); }
+#app[data-variant="glass"] .poster { border-radius: 20px; }
+#app[data-variant="glass"] .row.wide .poster { border-radius: 26px; }
+#app[data-variant="glass"] .btn { border-radius: 999px; box-shadow: 0 6px 18px rgba(94,92,230,.3); }
+#app[data-variant="glass"] .btn.secondary, #app[data-variant="glass"] .btn.plain, #app[data-variant="glass"] .btn.white,
+#app[data-variant="glass"] .btn.glass { box-shadow: none; }
+#app[data-variant="glass"] .balance { border-radius: 28px; background:
+  radial-gradient(80% 100% at 0% 0%, #a5a3ff, transparent 60%), radial-gradient(80% 100% at 100% 100%, #ff9f0a, transparent 60%), #5e5ce6;
+  box-shadow: 0 16px 40px rgba(94,92,230,.35); }
+#app[data-variant="glass"] .sub-card { border-radius: 28px; background: linear-gradient(135deg, rgba(30,30,40,.85), rgba(60,60,80,.75));
+  backdrop-filter: blur(30px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.15); }
+#app[data-variant="glass"] .sheet { background: var(--glass); backdrop-filter: blur(40px) saturate(180%); -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-radius: 32px 32px 0 0; box-shadow: inset 0 1px 0 var(--glass-line); }
+#app[data-variant="glass"] .ad-frame { border-radius: 26px; }
+#app[data-variant="glass"] .hero::after { background: linear-gradient(180deg, rgba(0,0,0,.15), transparent 30%, transparent 55%, rgba(238,240,247,0)); }
+#app[data-variant="glass"] .hero { border-radius: 0 0 36px 36px; margin-bottom: 18px; }
+#app[data-variant="glass"] .hero h1, #app[data-variant="glass"] .hero .small { color: #fff; }
+
+/* Плаваючий таб-бар-капсула */
+#app[data-variant="glass"] .tabbar {
+  position: absolute; left: 14px; right: 14px; bottom: max(14px, var(--sb, env(safe-area-inset-bottom)));
+  border-radius: 34px; padding: 6px; border: 0;
+  background: var(--glass); backdrop-filter: blur(30px) saturate(200%); -webkit-backdrop-filter: blur(30px) saturate(200%);
+  box-shadow: inset 0 0 0 1px var(--glass-line), 0 12px 32px rgba(0,0,0,.18);
+}
+#app[data-variant="glass"] .tabbar button { border-radius: 28px; padding: 7px 0 6px; color: var(--label); }
+#app[data-variant="glass"] .tabbar button.active { background: rgba(120,120,128,.16); color: var(--tint); }
+#app[data-variant="glass"].feed .tabbar { background: rgba(255,255,255,.14); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), 0 12px 32px rgba(0,0,0,.3); }
+#app[data-variant="glass"].feed .tabbar button { color: rgba(255,255,255,.75); }
+#app[data-variant="glass"].feed .tabbar button.active { background: rgba(255,255,255,.2); color: #fff; }
+#app[data-variant="glass"] .slide { padding-bottom: 112px; }
+#app[data-variant="glass"] .slide .side { bottom: 112px; }
+#app[data-variant="glass"] .slide .btn.white { box-shadow: none; }
+#app[data-variant="glass"] .toast { border-radius: 999px; }
+#app .search-wrap svg.i { z-index: 1; }
