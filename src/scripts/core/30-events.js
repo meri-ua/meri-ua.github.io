@@ -2,7 +2,7 @@
 
 // ---------- Делегування кліків ----------
 document.addEventListener("click", e => {
-  const el = e.target.closest("[data-tab],[data-go],[data-open],[data-play],[data-like],[data-save],[data-genre],[data-pack],[data-setting],[data-vote],[data-back],[data-close],[data-variant]");
+  const el = e.target.closest("[data-tab],[data-go],[data-open],[data-play],[data-like],[data-save],[data-genre],[data-pack],[data-setting],[data-vote],[data-back],[data-close],[data-variant],[data-follow],[data-creator],[data-ctab],[data-share-creator]");
   if (!el) { if (e.target.id === "modal") closeModal(); return; }
   const d = el.dataset;
   if (d.tab) go(d.tab);
@@ -20,7 +20,11 @@ document.addEventListener("click", e => {
   else if (d.setting) { S.settings[d.setting] = !S.settings[d.setting]; save(); el.classList.toggle("on"); }
   else if (d.variant) { S.design = d.variant; save(); applyVariant(); render(); }
   else if (d.vote !== undefined && !el.closest(".lock-screen")) { castVote(el); render(); }
-  else if ("back" in d) { UI.detail = null; render(); }
+  else if (d.follow) toggleFollow(d.follow);
+  else if (d.shareCreator) shareCreator(d.shareCreator);
+  else if (d.ctab) { UI.creatorTab = d.ctab; render(); }
+  else if (d.creator) { if (!$("#player").classList.contains("hidden")) closePlayer(); openCreator(d.creator); }
+  else if ("back" in d) goBack();
   else if ("close" in d) closeModal();
 });
 

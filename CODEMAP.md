@@ -10,13 +10,17 @@
 
 | Метрика | Значення |
 |---|---|
-| Файлів JS | 16 |
+| Файлів JS | 18 |
 | Файлів CSS | 2 |
-| Сутностей верхнього рівня | 71 |
+| Сутностей верхнього рівня | 89 |
 
 Позначки: `name()` — функція, `name` — значення; число — рядок у файлі.
 
 ## Файли
+
+### `src/data/creators.js` — 49 рядків
+
+`CREATOR_TYPES`:5, `CREATORS`:7
 
 ### `src/data/series.js` — 120 рядків
 
@@ -27,42 +31,42 @@ _Налаштування економіки й варіанти дизайну_
 
 `CFG`:4, `VARIANTS`:18
 
-### `src/scripts/core/02-icons.js` — 33 рядків
+### `src/scripts/core/02-icons.js` — 38 рядків
 _Іконки в стилі SF Symbols і значок монети_
 
-`svg`():4, `ICONS`:5, `COIN`:31
+`svg`():4, `ICONS`:5, `COIN`:36
 
-### `src/scripts/core/03-state.js` — 41 рядків
+### `src/scripts/core/03-state.js` — 45 рядків
 _Стан застосунку: що зберігається в localStorage_
 
-`STORE_KEY`:4, `ymdLocal`():7, `today`():9, `DEFAULT_STATE`():10, `S`:23, `params`:28, `EMBED`:29, `URL_VARIANT`:30, `save`():31, `UI`:33, `TITLES`:34, `TAB_NAMES`:35, `applyVariant`():37
+`STORE_KEY`:4, `ymdLocal`():7, `today`():9, `DEFAULT_STATE`():10, `S`:25, `params`:30, `EMBED`:31, `URL_VARIANT`:32, `save`():33, `UI`:37, `TITLES`:38, `TAB_NAMES`:39, `applyVariant`():41
 
-### `src/scripts/core/04-utils.js` — 39 рядків
+### `src/scripts/core/04-utils.js` — 60 рядків
 _Дрібні помічники: пошук, екранування, постери_
 
-`$`():4, `byId`():5, `esc`():6, `grad`():7, `fmtViews`():8, `hash`():9, `toast`():11, `updateCoins`():15, `resetAdsIfNewDay`():17, `isUnlocked`():21, `watchedOf`():22, `toggleIn`():23, `posterHTML`():25, `itemHTML`():32, `wideHTML`():34, `sectionHead`():36, `rowIco`():37
+`$`():4, `byId`():5, `creatorById`():6, `creatorOf`():7, `seriesOf`():8, `esc`():9, `grad`():10, `fmtViews`():11, `hash`():12, `toast`():14, `updateCoins`():18, `resetAdsIfNewDay`():20, `isUnlocked`():24, `watchedOf`():25, `toggleIn`():26, `posterHTML`():28, `itemHTML`():35, `wideHTML`():37, `sectionHead`():39, `creatorStats`():41, `fmtCount`():46, `plural`():47, `avatarHTML`():53, `verifiedHTML`():57, `rowIco`():58
 
-### `src/scripts/core/05-recommend.js` — 27 рядків
+### `src/scripts/core/05-recommend.js` — 30 рядків
 _Рекомендації для стрічки «Для тебе»_
 
 `recommend`():4
 
-### `src/scripts/core/06-nav.js` — 25 рядків
+### `src/scripts/core/06-nav.js` — 38 рядків
 _Навігація між вкладками і головний render()_
 
-`renderTabbar`():4, `go`():8, `openDetail`():12, `render`():14
+`renderTabbar`():4, `go`():8, `pushScreen`():13, `openDetail`():14, `openCreator`():15, `goBack`():21, `render`():26
 
 ### `src/scripts/core/10-foryou.js` — 25 рядків
 _Екран «Для тебе»: вертикальна стрічка_
 
 `renderForYou`():4
 
-### `src/scripts/core/11-catalog.js` — 37 рядків
+### `src/scripts/core/11-catalog.js` — 39 рядків
 _Екран «Каталог»: пошук, жанри, підбірки_
 
 `renderCatalog`():4
 
-### `src/scripts/core/12-my.js` — 31 рядків
+### `src/scripts/core/12-my.js` — 39 рядків
 _Екран «Медіатека»: продовження, збережене, голоси_
 
 `renderMy`():4
@@ -82,22 +86,27 @@ _Сторінка серіалу і голосування_
 
 `voteHTML`():4, `renderDetail`():20
 
+### `src/scripts/core/16-creator.js` — 99 рядків
+_Сторінка автора чи студії в стилі Instagram_
+
+`renderCreator`():6, `toggleFollow`():59, `shareCreator`():67, `creatorsStoriesHTML`():81, `creatorRowHTML`():89
+
 ### `src/scripts/core/20-player.js` — 151 рядків
 _Плеєр: серії, замок, фінал, свайпи_
 
 `P`:4, `openPlayer`():6, `closePlayer`():11, `startEpisode`():17, `renderPlayer`():29, `play`():57, `togglePlay`():66, `endEpisode`():70, `nextEp`():80, `prevEp`():84, `overlay`():86, `showLock`():91, `showFinale`():113, `castVote`():125, `touchY`:130, `wheelLock`:138
 
-### `src/scripts/core/30-events.js` — 27 рядків
+### `src/scripts/core/30-events.js` — 31 рядків
 _Один обробник кліків на весь застосунок_
 
 
-### `src/scripts/core/99-start.js` — 13 рядків
+### `src/scripts/core/99-start.js` — 14 рядків
 _Старт: усе готово — малюємо перший екран_
 
 
-### `src/styles/01-base.css` — 332 рядків
+### `src/styles/01-base.css` — 382 рядків
 
-Навігаційна панель з великим заголовком:58 · Таб-бар (матеріал з розмиттям):75 · Типографіка:87 · Кнопки:96 · Згруповані списки та картки:110 · Постери:146 · Стрічка «Для тебе»:169 · Продовжити перегляд:193 · Монети:205 · Профіль:225 · Сторінка серіалу:235 · Плеєр:256 · Голосування:298 · Аркуш (sheet):306
+Навігаційна панель з великим заголовком:58 · Таб-бар (матеріал з розмиттям):75 · Типографіка:87 · Кнопки:96 · Згруповані списки та картки:110 · Постери:146 · Стрічка «Для тебе»:169 · Продовжити перегляд:193 · Монети:205 · Профіль:225 · Сторінка серіалу:235 · Плеєр:256 · Голосування:298 · Аркуш (sheet):306 · Сторінка автора (Instagram-стиль):333
 
 ### `src/styles/02-variants.css` — 112 рядків
 

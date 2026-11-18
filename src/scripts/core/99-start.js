@@ -8,5 +8,6 @@ resetAdsIfNewDay();
 updateCoins();
 renderTabbar();
 if (params.get("open")) UI.detail = params.get("open");
+if (params.get("creator") && creatorById(params.get("creator"))) { UI.creator = params.get("creator"); if (!S.seenCreators.includes(UI.creator)) { S.seenCreators.push(UI.creator); save(); } }
 render();
 

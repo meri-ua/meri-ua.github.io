@@ -6,6 +6,11 @@ function renderMy(v) {
     .map(([id, p]) => ({ s: byId(id), p })).filter(x => x.s)
     .sort((a, b) => b.p.ts - a.p.ts);
   const saved = S.saved.map(byId).filter(Boolean);
+  const followed = S.following.map(creatorById).filter(Boolean);
+  const followSub = c => {
+    const list = seriesOf(c), fresh = list.find(s => s.isNew);
+    return fresh ? `Новий серіал — «${esc(fresh.title)}»` : `${list.length} ${plural(list.length, "серіал", "серіали", "серіалів")} · @${esc(c.handle)}`;
+  };
   v.innerHTML = `
     <h2 style="margin-top:8px">Продовжити перегляд</h2>
     ${cont.length ? `<div class="group">${cont.map(({ s, p }) => `
@@ -19,6 +24,9 @@ function renderMy(v) {
         <span class="play-circle">${ICONS.play}</span>
       </div>`).join("")}</div>`
     : `<div class="empty"><div class="e">${ICONS.tv}</div><b>Тут поки порожньо</b>Почніть дивитися серіал — і він з'явиться тут.<br/><br/><button class="btn small-btn" data-go="foryou">Знайти серіал</button></div>`}
+    ${followed.length ? `<h2>Ви стежите</h2><div class="group">${followed.map(c => `
+      <div class="list-row" data-creator="${c.id}" style="cursor:pointer">${avatarHTML(c, "sm")}
+        <div style="flex:1;min-width:0">${esc(c.name)} ${verifiedHTML(c)}<div class="sub">${followSub(c)}</div></div><span class="chev">›</span></div>`).join("")}</div>` : ""}
     <h2>Збережене</h2>
     ${saved.length ? `<div class="grid">${saved.map(itemHTML).join("")}</div>`
       : `<div class="empty"><div class="e">${ICONS.bookmark}</div>Натисніть «Зберегти» на серіалі, щоб додати його сюди.</div>`}

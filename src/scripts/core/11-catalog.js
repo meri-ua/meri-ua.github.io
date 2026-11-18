@@ -5,7 +5,7 @@ function renderCatalog(v) {
   const q = UI.query.trim().toLowerCase();
   const filtered = SERIES.filter(s =>
     (UI.genre === "Усі" || s.genre === UI.genre) &&
-    (!q || (s.title + s.desc + s.tags.join(" ") + s.genre).toLowerCase().includes(q)));
+    (!q || (s.title + s.desc + s.tags.join(" ") + s.genre + " " + creatorOf(s).name + " @" + creatorOf(s).handle).toLowerCase().includes(q)));
   const filtering = q || UI.genre !== "Усі";
   const popular = [...SERIES].sort((a, b) => b.views - a.views);
 
@@ -17,6 +17,8 @@ function renderCatalog(v) {
       ${filtered.length ? `<div class="grid" style="margin-top:12px">${filtered.map(itemHTML).join("")}</div>`
         : `<div class="empty"><div class="e">${ICONS.search}</div><b>Нічого не знайдено</b>Спробуйте інший запит або жанр.</div>`}`
     : `
+      <h2 style="margin-top:14px">Автори</h2>
+      ${creatorsStoriesHTML()}
       ${sectionHead("Вибір редакції")}
       <div class="row wide">${popular.slice(0, 5).map(wideHTML).join("")}</div>
       ${sectionHead("Популярне")}
@@ -24,9 +26,9 @@ function renderCatalog(v) {
       ${sectionHead("Новинки")}
       <div class="row">${SERIES.filter(s => s.isNew).map(itemHTML).join("")}</div>
       ${sectionHead("Від незалежних авторів")}
-      <div class="row">${SERIES.filter(s => s.creator.startsWith("Незалежний") || s.creator.startsWith("Студія")).map(itemHTML).join("")}</div>
+      <div class="row">${SERIES.filter(s => ["studio", "indie"].includes(creatorOf(s).type)).map(itemHTML).join("")}</div>
       ${sectionHead("Meri AI Studio")}
-      <div class="row">${SERIES.filter(s => s.creator === "Meri AI Studio").map(itemHTML).join("")}</div>`}
+      <div class="row">${SERIES.filter(s => creatorOf(s).type === "ai").map(itemHTML).join("")}</div>`}
   `;
   $("#search").addEventListener("input", e => {
     UI.query = e.target.value; const pos = e.target.selectionStart;

@@ -14,6 +14,8 @@ const DEFAULT_STATE = () => ({
   unlocked: {},       // {seriesId: [ep,...]}
   progress: {},       // {seriesId: {ep, watched:[...], ts}}
   saved: [], liked: [],
+  following: [],      // id авторів, за якими глядач стежить
+  seenCreators: [],   // чиї сторінки вже відкривали (сіре кільце в рядку «Автори»)
   history: [],        // [{id, ep, ts}]
   votes: {},          // {seriesId: optionIndex}
   sub: false,
@@ -30,7 +32,9 @@ const EMBED = params.has("embed");
 const URL_VARIANT = params.get("v");
 const save = () => { if (!EMBED) try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch {} updateCoins(); };
 
-let UI = { tab: params.get("tab") || "foryou", genre: "Усі", query: "", detail: null };
+// detail — відкритий серіал, creator — відкритий автор (одночасно лише щось одне);
+// stack — куди повертає «назад» (напр., серіал → автор → назад до серіалу).
+let UI = { tab: params.get("tab") || "foryou", genre: "Усі", query: "", detail: null, creator: null, creatorTab: "series", stack: [] };
 const TITLES = { foryou: "", catalog: "Каталог", my: "Мої серіали", coins: "Монети", profile: "Профіль" };
 const TAB_NAMES = { foryou: "Для тебе", catalog: "Каталог", my: "Медіатека", coins: "Монети", profile: "Профіль" };
 

@@ -329,3 +329,53 @@ svg.coin.c-orange { color: var(--coin); }
 .empty .e { width: 56px; height: 56px; margin: 0 auto 10px; color: var(--label3); }
 .empty .e svg.i { width: 56px; height: 56px; stroke-width: 1.4; }
 .empty b { display: block; color: var(--label); font-size: 20px; margin-bottom: 6px; }
+
+/* ---------- Сторінка автора (Instagram-стиль) ---------- */
+.ig-bar { display: flex; align-items: center; gap: 6px; padding: max(14px, var(--st, env(safe-area-inset-top))) 0 6px; font-size: 18px; }
+.ig-back { width: 34px; height: 34px; margin-left: -8px; color: var(--tint); display: flex; align-items: center; justify-content: center; }
+.ig-back svg.i { width: 24px; height: 24px; stroke-width: 2.4; }
+.vf { display: inline-flex; width: 16px; height: 16px; border-radius: 50%; background: var(--tint); color: #fff;
+  align-items: center; justify-content: center; vertical-align: -2px; flex: none; }
+.vf svg.i { width: 11px; height: 11px; stroke-width: 3.2; }
+.ava { border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; flex: none; }
+.ava-sm { width: 40px; height: 40px; font-size: 20px; }
+.ava-md { width: 100%; height: 100%; font-size: 26px; }
+.ava-lg { width: 100%; height: 100%; font-size: 38px; }
+.ring { border-radius: 50%; padding: 3px; flex: none;
+  background: conic-gradient(from 210deg, #ffd500, #ff6a00, #ff2d55, #af52de, #0a84ff, #ffd500); }
+.ring.seen { background: var(--fill2); }
+.ring .ava { border: 3px solid var(--bg); }
+.ring-md { width: 68px; height: 68px; }
+.ring-lg { width: 92px; height: 92px; }
+.ig-head { display: flex; align-items: center; gap: 18px; margin-top: 10px; }
+.ig-stats { display: flex; flex: 1; justify-content: space-around; text-align: center; }
+.ig-stats b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+.ig-stats span { font-size: 12px; color: var(--label2); }
+.ig-name { font-weight: 700; font-size: 16px; margin-top: 12px; }
+.ig-type { font-size: 13px; color: var(--label2); margin-top: 2px; }
+.ig-bio { font-size: 15px; line-height: 1.4; margin-top: 6px; }
+.ig-btns { display: flex; gap: 8px; margin-top: 14px; }
+.ig-btns .btn { flex: 1; min-height: 38px; font-size: 15px; border-radius: 12px; padding: 0 10px; }
+.ig-btns .btn svg.i { width: 17px; height: 17px; stroke-width: 2.2; }
+.ig-tabs { display: flex; margin: 18px -16px 0; border-bottom: .5px solid var(--sep); }
+.ig-tabs button { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 11px 0;
+  font-size: 14px; font-weight: 600; color: var(--label2); }
+.ig-tabs button svg.i { width: 18px; height: 18px; }
+.ig-tabs button.on { color: var(--label); box-shadow: inset 0 -2px 0 var(--label); }
+.ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 0 -16px; }
+.ig-cell { aspect-ratio: 9/16; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; color: #fff; }
+.ig-cell .em { font-size: 42px; filter: drop-shadow(0 8px 16px rgba(0,0,0,.25)); }
+.ig-cell .badge { position: absolute; top: 6px; left: 6px; }
+.ig-cell .v { position: absolute; left: 6px; bottom: 6px; display: flex; align-items: center; gap: 3px; font-size: 12px; font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+.ig-cell .v svg.i { width: 11px; height: 11px; fill: currentColor; stroke: none; }
+.ig-cell.soon { background: var(--fill); color: var(--label2); font-size: 12px; text-align: center; }
+.ig-cell:active { opacity: .8; }
+/* Рядок «Автори» у Каталозі — як сторіз */
+.stories { display: flex; gap: 12px; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 6px; scrollbar-width: none; }
+.stories::-webkit-scrollbar { display: none; }
+.story { width: 70px; flex: none; text-align: center; font-size: 11px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.story span { width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.story:active .ring { transform: scale(.94); }
+.creator-row { margin: 14px 0 4px; }
+.creator-row .list-row { font-size: 16px; }

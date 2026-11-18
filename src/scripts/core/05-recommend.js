@@ -14,8 +14,11 @@ function recommend() {
     const finished = p && p.watched.length >= s.episodes;
     let score = g * 3 + s.rating * 2 + Math.log10(s.views) + (s.isNew ? 1.5 : 0) - (finished ? 20 : 0);
     if (watchedIds.has(s.id) && !finished) score += 4; // продовжити
+    const followed = S.following.includes(s.creatorId);
+    if (followed && !finished) score += 3;             // автор, за яким стежиш
     let why;
     if (p && !finished) why = `Продовжити з ${p.ep}-ї серії`;
+    else if (followed) why = `Від @${creatorOf(s).handle}, за яким ви стежите`;
     else if (g && lastSeenByGenre[s.genre] && lastSeenByGenre[s.genre].id !== s.id) why = `Бо вам сподобався «${lastSeenByGenre[s.genre].title}»`;
     else if (s.isNew) why = "Новинка тижня";
     else if (s.views > 2e6) why = "Популярне в Україні";

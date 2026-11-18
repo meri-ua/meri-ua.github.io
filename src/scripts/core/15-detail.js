@@ -32,7 +32,7 @@ function renderDetail(v, s) {
     </div>
     <p class="detail-desc">${esc(s.desc)}</p>
     <div class="chips">${s.tags.map(t => `<span class="chip">${esc(t)}</span>`).join("")}<span class="chip">Українська озвучка</span></div>
-    <p class="muted small">${esc(s.creator)}</p>
+    ${creatorRowHTML(creatorOf(s))}
     <h2>Серії</h2>
     <div class="ep-grid">${Array.from({ length: s.episodes }, (_, i) => i + 1).map(n =>
       `<button class="ep ${watched.includes(n) ? "watched" : ""} ${isUnlocked(s, n) ? "" : "locked"}" data-play="${s.id}" data-ep="${n}">${n}${isUnlocked(s, n) ? "" : ICONS.lock.replace('class="i"', 'class="i lk"')}</button>`).join("")}</div>
