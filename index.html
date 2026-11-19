@@ -395,6 +395,65 @@ svg.coin.c-orange { color: var(--coin); }
 .creator-row { margin: 14px 0 4px; }
 .creator-row .list-row { font-size: 16px; }
 
+/* ---------- Мій профіль і подача серіалу ---------- */
+.page-bar { gap: 4px; }
+.page-bar .pb-title { flex: 1; text-align: center; font-size: 17px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.page-bar .pb-right { min-width: 34px; display: flex; justify-content: flex-end; }
+.page-bar .ig-back { flex: none; }
+.page-bar .ig-back svg.i { stroke-width: 2; }
+.pb-save { color: var(--tint); font-weight: 600; font-size: 17px; }
+.step-n { font-size: 15px; color: var(--label2); font-variant-numeric: tabular-nums; }
+.me-head { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 8px; }
+.me-head .ring-lg { width: 100px; height: 100px; }
+.me-head .ig-name { font-size: 20px; }
+.tt-stats { display: flex; justify-content: center; gap: 28px; margin-top: 14px; }
+.tt-stats b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+.tt-stats span { font-size: 12px; color: var(--label2); }
+.ig-tabs button { font-size: 13px; gap: 4px; }
+.ig-tabs button svg.i { width: 16px; height: 16px; }
+.ig-cell .st { position: absolute; top: 6px; left: 6px; font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 6px; color: #fff; z-index: 1; }
+.ig-cell .st.mod { background: #ff9f0a; }
+.ig-cell .st.ok { background: #34c759; }
+.ig-cell .st.draft { background: rgba(0,0,0,.45); }
+.ig-cell .v { max-width: calc(100% - 12px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.ig-cell.soon { flex-direction: column; gap: 2px; color: var(--tint); font-weight: 600; }
+.empty-me { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 28px 20px; text-align: center; color: var(--label2); font-size: 14px; }
+.empty-me b { color: var(--label); font-size: 17px; }
+.big-plus { width: 56px; height: 56px; border-radius: 50%; background: var(--fill); display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--tint); }
+/* Поля форм */
+.field { margin-top: 14px; }
+.field label, .lbl { display: block; font-size: 13px; color: var(--label2); margin: 14px 0 6px; }
+.field label { margin-top: 0; }
+.field input, .field textarea { width: 100%; padding: 12px 14px; border: 0; border-radius: 12px; background: var(--bg-elev); color: var(--label);
+  font: inherit; font-size: 17px; outline: none; resize: none; box-shadow: inset 0 0 0 1px var(--sep); }
+.field input:focus, .field textarea:focus { box-shadow: inset 0 0 0 2px var(--tint); }
+.field .hint { font-size: 12px; color: var(--label2); margin-top: 5px; }
+.field-row { display: flex; gap: 10px; } .field-row .field { flex: 1; }
+.at { position: relative; } .at span { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--label2); font-size: 17px; }
+.at input { padding-left: 30px; }
+.pick { display: flex; flex-wrap: wrap; gap: 8px; }
+.pick-e { width: 40px; height: 40px; border-radius: 12px; background: var(--fill); font-size: 22px; }
+.pick-e.on { box-shadow: inset 0 0 0 2px var(--tint); background: var(--bg-elev); }
+.sw { width: 32px; height: 32px; border-radius: 50%; }
+.sw.on { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--tint); }
+.chips.wrap { flex-wrap: wrap; margin: 0; padding: 0; overflow: visible; }
+.steps { display: flex; gap: 6px; margin-top: 4px; }
+.steps i { flex: 1; height: 4px; border-radius: 4px; background: var(--fill2); transition: background .3s; }
+.steps i.on { background: var(--tint); }
+.cover-row { display: flex; gap: 14px; align-items: flex-start; }
+.cover-prev { width: 112px; flex: none; font-size: 40px; }
+.upload { display: flex; align-items: center; justify-content: center; gap: 8px; border: 1.5px dashed var(--sep); border-radius: 14px;
+  padding: 16px; color: var(--tint); font-weight: 600; cursor: pointer; }
+.upload svg.i { width: 20px; height: 20px; }
+.check { display: flex; gap: 12px; align-items: flex-start; margin-top: 16px; font-size: 15px; line-height: 1.35; cursor: pointer; }
+.check input { width: 22px; height: 22px; accent-color: var(--tint); flex: none; margin: 0; }
+.sum { display: flex; gap: 12px; align-items: center; margin-top: 20px; }
+.sum .poster { width: 64px; flex: none; font-size: 24px; } .sum .p-title { display: none; }
+.sum .sub { font-size: 13px; color: var(--label2); margin-top: 2px; }
+.err { color: var(--red); font-size: 14px; min-height: 20px; margin-top: 10px; }
+.wiz-btns { display: flex; gap: 10px; margin-top: 8px; }
+.wiz-btns .btn { flex: 1; }
+
 /* ================================================================
    Варіанти оформлення. Базовий "ios" — у styles.css.
    ================================================================ */
@@ -528,7 +587,7 @@ svg.coin.c-orange { color: var(--coin); }
   </div>
 
   <script>
-window.MERI_BUILD = "2026-11-19-0053-51b13a1";
+window.MERI_BUILD = "2026-11-19-0511-7ba9add";
 // Автори та студії — сторінки в стилі Instagram (16-creator.js).
 // Усі вигадані. У продукті це прийде з API разом із кабінетом творця.
 // type: originals — наші серіали, studio — студія, indie — незалежний автор, ai — AI-студія.
@@ -711,7 +770,9 @@ const CFG = {
   AD_SECONDS: 5,        // тривалість демо-реклами
   CHECKIN_REWARD: 10,   // щоденний бонус
   EP_SECONDS: 12,       // тривалість демо-серії
-  SUB_PRICE: 149        // грн/міс за Meri+
+  SUB_PRICE: 149,       // грн/міс за Meri+
+  AUTHOR_SHARE: 50,     // % доходу від переглядів, що отримує автор
+  MODERATION_SECONDS: 30 // демо: скільки «триває» модерація поданого серіалу
 };
 
 // ---------- Варіанти дизайну ----------
@@ -750,6 +811,7 @@ const ICONS = {
   clock: svg('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'),
   captions: svg('<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2 2 0 100 3.6M16.5 10.2a2 2 0 100 3.6"/>'),
   hand: svg('<path d="M12 21a7 7 0 01-7-7V9.5a1.5 1.5 0 013 0V12M8 12V5.5a1.5 1.5 0 013 0V11M11 11V4.5a1.5 1.5 0 013 0V11M14 11V6.5a1.5 1.5 0 013 0V14a7 7 0 01-5 7"/>'),
+  gear: svg('<circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/><circle cx="12" cy="12" r="6.6"/>'),
   check: svg('<path d="M6 12.5l4 4 8-9"/>'),
   grid: svg('<rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M9.2 3.5v17M14.8 3.5v17M3.5 9.2h17M3.5 14.8h17"/>'),
   info: svg('<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r="1" fill="currentColor" stroke="none"/>'),
@@ -780,6 +842,8 @@ const DEFAULT_STATE = () => ({
   seenCreators: [],   // чиї сторінки вже відкривали (сіре кільце в рядку «Автори»)
   history: [],        // [{id, ep, ts}]
   votes: {},          // {seriesId: optionIndex}
+  me: { name: "", handle: "", city: "", bio: "", emoji: "🎬", color: 0 }, // ваш профіль (17-me.js)
+  submissions: [],    // подані серіали: чернетка → модерація → опубліковано (18-submit.js)
   sub: false,
   settings: { autoplay: true, subs: true, adsPersonal: false },
   design: "glass"
@@ -796,7 +860,9 @@ const save = () => { if (!EMBED) try { localStorage.setItem(STORE_KEY, JSON.stri
 
 // detail — відкритий серіал, creator — відкритий автор (одночасно лише щось одне);
 // stack — куди повертає «назад» (напр., серіал → автор → назад до серіалу).
-let UI = { tab: params.get("tab") || "foryou", genre: "Усі", query: "", detail: null, creator: null, creatorTab: "series", stack: [] };
+let UI = { tab: params.get("tab") || "foryou", genre: "Усі", query: "", detail: null, creator: null, creatorTab: "series", stack: [],
+           page: null,        // підсторінка профілю: "settings" | "edit-me" | "submit"
+           meTab: "mine", draftId: null };
 const TITLES = { foryou: "", catalog: "Каталог", my: "Мої серіали", coins: "Монети", profile: "Профіль" };
 const TAB_NAMES = { foryou: "Для тебе", catalog: "Каталог", my: "Медіатека", coins: "Монети", profile: "Профіль" };
 
@@ -814,8 +880,11 @@ const creatorById = id => CREATORS.find(c => c.id === id);
 const creatorOf = s => creatorById(s.creatorId);
 const seriesOf = c => SERIES.filter(s => s.creatorId === c.id);
 const esc = str => String(str).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const grad = s => `linear-gradient(160deg, ${s.colors[0]}, ${s.colors[1]})`;
-const fmtViews = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace(".0", "") + " млн" : Math.round(n / 1e3) + " тис";
+// Фон серіалу: власний постер (якщо автор завантажив) поверх градієнта.
+const grad = s => (s.cover ? `url('${s.cover}') center/cover no-repeat, ` : "") + `linear-gradient(160deg, ${s.colors[0]}, ${s.colors[1]})`;
+const fmtViews = n => n < 1e3 ? String(n) : n >= 1e6 ? (n / 1e6).toFixed(1).replace(".0", "") + " млн" : Math.round(n / 1e3) + " тис";
+// У нового серіалу ще нема оцінок — пишемо «Новий», а не «★ 0».
+const ratingText = s => s.rating ? `★ ${s.rating}` : "Новий";
 const hash = str => [...str].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
 
 function toast(msg) {
@@ -828,7 +897,9 @@ function resetAdsIfNewDay() {
   if (S.ads.date !== today()) { S.ads = { date: today(), count: 0, last: 0 }; save(); }
 }
 
-const isUnlocked = (s, ep) => ep <= CFG.FREE_EPS || S.sub || (S.unlocked[s.id] || []).includes(ep);
+// Безкоштовні серії: своя кількість у серіалу (автор задає при подачі) або загальна CFG.FREE_EPS.
+const freeEpsOf = s => s.freeEps || CFG.FREE_EPS;
+const isUnlocked = (s, ep) => ep <= freeEpsOf(s) || S.sub || (S.unlocked[s.id] || []).includes(ep);
 const watchedOf = id => (S.progress[id] && S.progress[id].watched) || [];
 const toggleIn = (arr, v) => arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v];
 
@@ -879,7 +950,7 @@ function recommend() {
     const g = genreW[s.genre] || 0;
     const p = S.progress[s.id];
     const finished = p && p.watched.length >= s.episodes;
-    let score = g * 3 + s.rating * 2 + Math.log10(s.views) + (s.isNew ? 1.5 : 0) - (finished ? 20 : 0);
+    let score = g * 3 + (s.rating || 0) * 2 + Math.log10(s.views + 1) + (s.isNew ? 1.5 : 0) - (finished ? 20 : 0);
     if (watchedIds.has(s.id) && !finished) score += 4; // продовжити
     const followed = S.following.includes(s.creatorId);
     if (followed && !finished) score += 3;             // автор, за яким стежиш
@@ -889,7 +960,7 @@ function recommend() {
     else if (g && lastSeenByGenre[s.genre] && lastSeenByGenre[s.genre].id !== s.id) why = `Бо вам сподобався «${lastSeenByGenre[s.genre].title}»`;
     else if (s.isNew) why = "Новинка тижня";
     else if (s.views > 2e6) why = "Популярне в Україні";
-    else why = `${s.genre} · ★ ${s.rating}`;
+    else why = `${s.genre} · ${ratingText(s)}`;
     return { s, score, why };
   }).sort((a, b) => b.score - a.score);
 }
@@ -898,25 +969,36 @@ function recommend() {
 /* 06-nav.js — Навігація між вкладками і головний render() */
 
 // ---------- Навігація ----------
+// Дії кнопок з атрибутом data-act="назва" — їх реєструють екрани (17-me.js, 18-submit.js).
+const ACTIONS = {};
 function renderTabbar() {
   $("#tabbar").innerHTML = Object.keys(TAB_NAMES).map(t =>
     `<button data-tab="${t}" class="${t === UI.tab ? "active" : ""}">${ICONS[t]}<span>${TAB_NAMES[t]}</span></button>`).join("");
 }
 function go(tab) {
-  UI.tab = tab; UI.detail = null; UI.creator = null; UI.stack = [];
+  UI.tab = tab; UI.detail = null; UI.creator = null; UI.page = null; UI.stack = [];
   renderTabbar(); render(); $("#view").scrollTop = 0;
 }
 // Запам'ятати поточний екран, щоб «назад» повернув саме сюди.
-function pushScreen() { if (UI.detail || UI.creator) UI.stack.push({ detail: UI.detail, creator: UI.creator, creatorTab: UI.creatorTab }); }
-function openDetail(id) { pushScreen(); UI.detail = id; UI.creator = null; render(); $("#view").scrollTop = 0; }
+function pushScreen() {
+  if (UI.detail || UI.creator || UI.page)
+    UI.stack.push({ detail: UI.detail, creator: UI.creator, creatorTab: UI.creatorTab, page: UI.page });
+}
+function openDetail(id) { pushScreen(); UI.detail = id; UI.creator = null; UI.page = null; render(); $("#view").scrollTop = 0; }
 function openCreator(id, tab = "series") {
   if (!creatorById(id)) return;
-  pushScreen(); UI.creator = id; UI.detail = null; UI.creatorTab = tab;
+  pushScreen(); UI.creator = id; UI.detail = null; UI.page = null; UI.creatorTab = tab;
   if (!S.seenCreators.includes(id)) { S.seenCreators.push(id); save(); }
   render(); $("#view").scrollTop = 0;
 }
+// Підсторінка профілю (налаштування, редагування, подача серіалу).
+function openPage(page) {
+  if (UI.tab !== "profile") { UI.tab = "profile"; UI.stack = []; UI.detail = UI.creator = null; renderTabbar(); }
+  if (page === "edit-me") UI.meForm = null;   // свіжа форма з поточного профілю
+  pushScreen(); UI.page = page; UI.detail = UI.creator = null; render(); $("#view").scrollTop = 0;
+}
 function goBack() {
-  const prev = UI.stack.pop() || { detail: null, creator: null, creatorTab: "series" };
+  const prev = UI.stack.pop() || { detail: null, creator: null, creatorTab: "series", page: null };
   Object.assign(UI, prev); render();
 }
 
@@ -924,9 +1006,11 @@ function render() {
   const v = $("#view"), app = $("#app");
   const feed = UI.tab === "foryou" && !UI.detail && !UI.creator;
   app.classList.toggle("feed", feed);
-  app.classList.toggle("detail", !!(UI.detail || UI.creator));
+  // Свою шапку (а не великий заголовок) мають серіал, автор, ваш профіль і його підсторінки.
+  app.classList.toggle("detail", !!(UI.detail || UI.creator || UI.page || UI.tab === "profile"));
   v.classList.toggle("feed-mode", feed);
   $("#pageTitle").innerHTML = feed ? `<span class="logo">Meri<span>.ua</span></span>` : TITLES[UI.tab];
+  if (UI.page) return ({ settings: renderSettings, "edit-me": renderEditMe, submit: renderSubmit })[UI.page](v);
   if (UI.creator) return renderCreator(v, creatorById(UI.creator));
   if (UI.detail) return renderDetail(v, byId(UI.detail));
   ({ foryou: renderForYou, catalog: renderCatalog, my: renderMy, coins: renderCoins, profile: renderProfile })[UI.tab](v);
@@ -949,7 +1033,7 @@ function renderForYou(v) {
       <div class="why">${esc(why)}</div>
       <h1>${esc(s.title)}</h1>
       <div class="desc">${esc(s.desc)}</div>
-      <div style="display:flex;gap:6px;margin-bottom:16px"><span class="chip">${s.genre}</span><span class="chip">★ ${s.rating}</span><span class="chip">UA озвучка</span></div>
+      <div style="display:flex;gap:6px;margin-bottom:16px"><span class="chip">${s.genre}</span><span class="chip">${ratingText(s)}</span><span class="chip">UA озвучка</span></div>
       <div class="actions">
         <button class="btn white" data-play="${s.id}" data-ep="${p ? p.ep : 1}">${ICONS.play.replace('class="i"', 'class="i" style="fill:currentColor;stroke:none;width:18px;height:18px"')} ${p ? `Серія ${p.ep}` : "Дивитись"}</button>
       </div>
@@ -1131,21 +1215,23 @@ function buyPack(i) {
 }
 
 
-/* 14-profile.js — Екран «Профіль»: Meri+, оформлення, налаштування */
+/* 14-profile.js — Налаштування (⚙︎ у профілі): Meri+, оформлення, відтворення, історія */
 
-// ---------- Профіль ----------
-function renderProfile(v) {
+// ---------- Налаштування ----------
+function renderSettings(v) {
   const hist = [...S.history].reverse().slice(0, 8);
   const cur = URL_VARIANT || S.design;
   const sw = (key, label, icon, color) => `<div class="list-row">${rowIco(icon, color)}<div style="flex:1">${label}</div>
     <button class="switch ${S.settings[key] ? "on" : ""}" data-setting="${key}" aria-label="${label}"></button></div>`;
   v.innerHTML = `
+    ${pageBarHTML("Налаштування")}
     <div class="group" style="margin-top:8px">
-      <div class="list-row" style="padding:14px 16px">
-        <div class="avatar">Г</div>
-        <div style="flex:1"><b style="font-size:20px">Гість</b><div class="sub">Увійдіть, щоб синхронізувати перегляд</div></div>
+      <div class="list-row" data-page="edit-me" style="cursor:pointer">
+        ${meAvatarHTML("sm")}
+        <div style="flex:1">${esc(meName())}<div class="sub">Редагувати профіль</div></div>
         <span class="chev">›</span>
       </div>
+      <div class="list-row muted small">Вхід в акаунт і синхронізація між пристроями — з'являться разом із сервером</div>
     </div>
 
     <div class="sub-card" style="margin-top:16px">
@@ -1158,7 +1244,7 @@ function renderProfile(v) {
 
     <h3>Оформлення</h3>
     <div class="group">${VARIANTS.map(x => `
-      <div class="list-row" data-variant="${x.id}" style="cursor:pointer">
+      <div class="list-row" data-design="${x.id}" style="cursor:pointer">
         ${rowIco("palette", x.id === "ios" ? "#0a84ff" : x.id === "music" ? "#fa2d48" : "#5e5ce6")}
         <div style="flex:1">${x.name}<div class="sub">${x.hint}</div></div>
         ${x.id === cur ? `<span style="color:var(--tint);font-weight:700">✓</span>` : ""}
@@ -1179,8 +1265,8 @@ function renderProfile(v) {
 
     <h3>Для творців</h3>
     <div class="group">
-      <div class="list-row" id="creatorBtn" style="cursor:pointer">${rowIco("film", "#af52de")}
-        <div style="flex:1">Подати свій серіал<div class="sub">Частка доходу для незалежних авторів</div></div><span class="chev">›</span></div>
+      <div class="list-row" data-act="new-submission" style="cursor:pointer">${rowIco("film", "#af52de")}
+        <div style="flex:1">Подати свій серіал<div class="sub">Частка доходу ${CFG.AUTHOR_SHARE}% для незалежних авторів</div></div><span class="chev">›</span></div>
     </div>
 
     <div class="group" style="margin-top:28px">
@@ -1188,9 +1274,8 @@ function renderProfile(v) {
     </div>
     <p class="footnote" style="text-align:center">Meri.ua · MVP прототип<br/>версія ${esc(window.MERI_BUILD || "dev")}</p>
   `;
-  $("#subBtn").onclick = () => { S.sub = !S.sub; save(); toast(S.sub ? "Meri+ активовано (демо)" : "Підписку скасовано"); renderProfile(v); };
-  $("#creatorBtn").onclick = () => toast("Повідомимо, коли кабінет творця відкриється");
-  $("#resetBtn").onclick = () => { if (confirm("Скинути монети, історію та прогрес?")) { S = DEFAULT_STATE(); save(); applyVariant(); render(); toast("Дані скинуто"); } };
+  $("#subBtn").onclick = () => { S.sub = !S.sub; save(); toast(S.sub ? "Meri+ активовано (демо)" : "Підписку скасовано"); renderSettings(v); };
+  $("#resetBtn").onclick = () => { if (confirm("Скинути монети, історію та прогрес?")) { S = DEFAULT_STATE(); save(); syncMine(); applyVariant(); go("profile"); toast("Дані скинуто"); } };
 }
 
 
@@ -1220,7 +1305,7 @@ function renderDetail(v, s) {
       <button class="back" data-back aria-label="Назад">${ICONS.back}</button>
       <div class="emoji">${s.emoji}</div>
       <h1>${esc(s.title)}</h1>
-      <div class="small">${s.genre} · ★ ${s.rating} · ${s.episodes} серій · ${fmtViews(s.views)} переглядів</div>
+      <div class="small">${s.genre} · ${ratingText(s)} · ${s.episodes} серій · ${fmtViews(s.views)} переглядів</div>
     </div>
     <div class="detail-actions">
       <button class="btn" style="flex:1" data-play="${s.id}" data-ep="${p ? p.ep : 1}">${p ? `Продовжити · серія ${p.ep}` : "Дивитись"}</button>
@@ -1285,7 +1370,8 @@ function renderCreator(v, c) {
     <div class="ig-type">${CREATOR_TYPES[c.type]} · ${esc(c.city)}</div>
     <div class="ig-bio">${esc(c.bio)}</div>
     <div class="ig-btns">
-      <button class="btn ${following ? "secondary" : ""}" data-follow="${c.id}">${following ? `${ICONS.check} Ви стежите` : "Стежити"}</button>
+      ${c.id === "me" ? `<button class="btn secondary" data-page="edit-me">Редагувати</button>`
+        : `<button class="btn ${following ? "secondary" : ""}" data-follow="${c.id}">${following ? `${ICONS.check} Ви стежите` : "Стежити"}</button>`}
       <button class="btn secondary" data-share-creator="${c.id}">${ICONS.share} Поділитися</button>
     </div>
     <div class="ig-tabs" role="tablist">
@@ -1319,7 +1405,8 @@ async function shareCreator(id) {
 
 // Рядок «Автори» в стилі сторіз (Каталог).
 function creatorsStoriesHTML() {
-  const order = [...CREATORS].sort((a, b) =>
+  // Ви — першим (як «Ваша історія» в Instagram), далі ще не переглянуті, далі — за підписниками.
+  const order = [...CREATORS].sort((a, b) => ((b.id === "me") - (a.id === "me")) ||
     (S.seenCreators.includes(a.id) - S.seenCreators.includes(b.id)) || (b.followers - a.followers));
   return `<div class="stories">${order.map(c => `
     <button class="story" data-creator="${c.id}">${avatarHTML(c, "md", true)}<span>${esc(c.name.replace(/^Студія «(.+)»$/, "$1"))}</span></button>`).join("")}</div>`;
@@ -1332,9 +1419,362 @@ function creatorRowHTML(c) {
     <div class="list-row" data-creator="${c.id}" style="cursor:pointer">
       ${avatarHTML(c, "sm")}
       <div style="flex:1;min-width:0">${esc(c.name)} ${verifiedHTML(c)}<div class="sub">@${esc(c.handle)} · ${fmtCount(st.followers)} підписників</div></div>
-      <button class="btn small-btn ${f ? "secondary" : ""}" data-follow="${c.id}">${f ? "Ви стежите" : "Стежити"}</button>
+      ${c.id === "me" ? `<span class="chip">Це ви</span>` : `<button class="btn small-btn ${f ? "secondary" : ""}" data-follow="${c.id}">${f ? "Ви стежите" : "Стежити"}</button>`}
     </div>
   </div>`;
+}
+
+/* 17-me.js — Ваш профіль у стилі TikTok, «Редагувати профіль» і ваші серіали в каталозі */
+
+// ---------- Мій профіль ----------
+// Кольори аватара й обкладинок (пари для градієнта) і символи на вибір.
+const PALETTE = [["#5e5ce6", "#0a84ff"], ["#134e5e", "#71b280"], ["#cb2d3e", "#ef473a"],
+  ["#f7971e", "#ffd200"], ["#232526", "#414345"], ["#ee9ca7", "#ffdde1"], ["#8e2de2", "#4a00e0"]];
+const ME_EMOJI = ["🎬", "✍️", "🎭", "🎥", "🌻", "🦋", "🐺", "⭐"];
+
+const meName = () => S.me.name.trim() || "Гість";
+const meHandle = () => S.me.handle || "guest";
+const meColors = () => PALETTE[S.me.color] || PALETTE[0];
+function meAvatarHTML(size = "md", ring = false) {
+  const c = { id: "me", emoji: S.me.emoji || "🎬", colors: meColors() };
+  return avatarHTML(c, size, ring ? "live" : false);
+}
+
+// Шапка підсторінки: «назад», заголовок по центру, необов'язкова кнопка праворуч.
+function pageBarHTML(title, right = "") {
+  return `<div class="ig-bar page-bar">
+    <button class="ig-back" data-back aria-label="Назад">${ICONS.back}</button>
+    <b class="pb-title">${title}</b><span class="pb-right">${right}</span>
+  </div>`;
+}
+
+// Опубліковані вами серіали стають частиною каталогу: автор «me» і його серіали
+// додаються в CREATORS і SERIES. Викликати після будь-якої зміни профілю чи подач.
+function syncMine() {
+  for (let i = SERIES.length - 1; i >= 0; i--) if (SERIES[i].creatorId === "me") SERIES.splice(i, 1);
+  const ci = CREATORS.findIndex(c => c.id === "me"); if (ci >= 0) CREATORS.splice(ci, 1);
+  const pub = S.submissions.filter(d => d.status === "published");
+  if (!pub.length) return;
+  CREATORS.push({ id: "me", name: meName(), handle: meHandle(), type: "indie", city: S.me.city.trim() || "Україна",
+    since: new Date().getFullYear(), verified: false, followers: 0, emoji: S.me.emoji || "🎬", colors: meColors(),
+    bio: S.me.bio.trim() || "Автор на Meri." });
+  pub.forEach(d => SERIES.push(seriesFromSubmission(d)));
+}
+function seriesFromSubmission(d) {
+  return {
+    id: d.id, title: d.title, genre: d.genre, tags: [d.genre, "Від автора"], desc: d.desc,
+    episodes: d.episodes, freeEps: d.freeEps, rating: null, views: 0, isNew: true, creatorId: "me",
+    colors: PALETTE[d.color] || PALETTE[0], emoji: d.cover ? "" : d.emoji, cover: d.cover || "",
+    beats: [d.desc.split(/(?<=[.!?…])\s/)[0].slice(0, 90), `Серія від @${meHandle()}`],
+    vote: { q: "Що має статися далі?", options: ["Продовження історії", "Новий сезон", "Спін-оф про героя"] }
+  };
+}
+
+// ---------- Екран профілю ----------
+const SUB_STATUS = { draft: ["Чернетка", "draft"], review: ["На модерації", "mod"], published: ["Опубліковано", "ok"] };
+
+function renderProfile(v) {
+  const t = UI.meTab;
+  const mine = [...S.submissions].sort((a, b) => b.createdAt - a.createdAt);
+  const cellFor = s => `<button class="ig-cell" data-open="${s.id}" style="background:${grad(s)}" aria-label="${esc(s.title)}">
+      <span class="em">${s.emoji}</span><span class="v">${ICONS.play} ${fmtViews(s.views)}</span></button>`;
+  const seriesGrid = (ids, emptyIcon, emptyText) => {
+    const list = ids.map(byId).filter(Boolean);
+    return list.length ? `<div class="ig-grid">${list.map(cellFor).join("")}</div>`
+      : `<div class="empty"><div class="e">${ICONS[emptyIcon]}</div>${emptyText}</div>`;
+  };
+
+  let body;
+  if (t === "liked") body = seriesGrid(S.liked, "heart", "Серіали, яким ви поставили ♥, з'являться тут.");
+  else if (t === "saved") body = seriesGrid(S.saved, "bookmark", "Натисніть «Зберегти» на серіалі, щоб додати його сюди.");
+  else if (!mine.length) body = `<div class="empty-me">
+      <div class="big-plus">＋</div><b>Створіть свій перший серіал</b>
+      <span>Подайте історію — після модерації вона з'явиться в Каталозі Meri під вашим ім'ям</span>
+      <button class="btn small-btn" data-act="new-submission">Подати серіал</button></div>`;
+  else body = `<div class="ig-grid">${mine.map(d => {
+      const [label, cls] = SUB_STATUS[d.status];
+      const bg = d.title || d.cover ? grad({ colors: PALETTE[d.color] || PALETTE[0], cover: d.cover }) : "var(--fill)";
+      return `<button class="ig-cell" data-act="open-sub" data-id="${d.id}" style="background:${bg}" aria-label="${esc(d.title || "Чернетка")}">
+        <span class="st ${cls}">${label}</span>
+        ${d.cover ? "" : `<span class="em">${d.emoji}</span>`}
+        ${d.title ? `<span class="v">${esc(d.title)}</span>` : ""}</button>`;
+    }).join("")}
+      <button class="ig-cell soon" data-act="new-submission" aria-label="Подати новий серіал"><span style="font-size:30px">＋</span>Новий серіал</button>
+    </div>
+    <p class="footnote" style="margin:12px 0 0">Ваша частка — ${CFG.AUTHOR_SHARE}% доходу від реклами, монет і Meri+ за перегляди ваших серій.
+      Демо: заявки зберігаються лише на цьому пристрої.</p>`;
+
+  const city = S.me.city.trim();
+  v.innerHTML = `
+    <div class="ig-bar page-bar">
+      <span class="ig-back"></span>
+      <b class="pb-title">${S.me.handle ? "@" + esc(S.me.handle) : "Мій профіль"}</b>
+      <span class="pb-right"><button class="ig-back" data-page="settings" aria-label="Налаштування">${ICONS.gear}</button></span>
+    </div>
+    <div class="me-head">
+      ${meAvatarHTML("lg", true)}
+      <div class="ig-name">${esc(meName())}</div>
+      <div class="ig-type">${S.me.handle ? "@" + esc(S.me.handle) : "Заповніть профіль, щоб подавати серіали"}${city ? " · " + esc(city) : ""}</div>
+      <div class="tt-stats">
+        <div><b>${S.following.length}</b><span>Підписки</span></div>
+        <div><b>0</b><span>Підписники</span></div>
+        <div><b>${S.liked.length}</b><span>Вподобання</span></div>
+      </div>
+      ${S.me.bio.trim() ? `<div class="ig-bio">${esc(S.me.bio)}</div>` : ""}
+    </div>
+    <div class="ig-btns">
+      <button class="btn secondary" data-page="edit-me">Редагувати</button>
+      <button class="btn" data-act="new-submission">＋ Подати серіал</button>
+    </div>
+    <div class="ig-tabs" role="tablist">
+      <button role="tab" class="${t === "mine" ? "on" : ""}" data-act="me-tab" data-t="mine">${ICONS.grid} Мої серіали</button>
+      <button role="tab" class="${t === "liked" ? "on" : ""}" data-act="me-tab" data-t="liked">${ICONS.heart} Вподобане</button>
+      <button role="tab" class="${t === "saved" ? "on" : ""}" data-act="me-tab" data-t="saved">${ICONS.bookmark} Збережене</button>
+    </div>
+    ${body}
+  `;
+}
+
+ACTIONS["me-tab"] = el => { UI.meTab = el.dataset.t; render(); };
+ACTIONS["open-sub"] = el => {
+  const d = S.submissions.find(x => x.id === el.dataset.id); if (!d) return;
+  if (d.status === "draft") { UI.draftId = d.id; openPage("submit"); }
+  else if (d.status === "review") {
+    const left = Math.max(1, Math.ceil((d.submittedAt + CFG.MODERATION_SECONDS * 1000 - Date.now()) / 1000));
+    toast(`«${d.title}» на модерації — ще ~${left} с`);
+  } else openDetail(d.id);
+};
+
+// ---------- Редагувати профіль ----------
+// Поки людина друкує, зміни живуть у UI.meForm; у стан S.me вони потрапляють лише після «Зберегти».
+function renderEditMe(v) {
+  const f = UI.meForm || (UI.meForm = { ...S.me });
+  const colors = PALETTE[f.color] || PALETTE[0];
+  v.innerHTML = `
+    ${pageBarHTML("Редагувати профіль", `<button class="pb-save" data-act="save-me">Готово</button>`)}
+    <div class="me-head">
+      ${avatarHTML({ id: "me", emoji: f.emoji, colors }, "lg", "live")}
+    </div>
+    <div class="lbl">Символ</div>
+    <div class="pick">${ME_EMOJI.map(e => `<button class="pick-e ${e === f.emoji ? "on" : ""}" data-act="me-emoji" data-v="${e}">${e}</button>`).join("")}</div>
+    <div class="lbl">Колір</div>
+    <div class="pick">${PALETTE.map((p, i) => `<button class="sw ${i === f.color ? "on" : ""}" data-act="me-color" data-v="${i}"
+      style="background:linear-gradient(160deg, ${p[0]}, ${p[1]})" aria-label="Колір ${i + 1}"></button>`).join("")}</div>
+    <div class="field"><label for="meName">Ім'я</label><input id="meName" data-mefield="name" maxlength="40" value="${esc(f.name)}" placeholder="Олена Коваль" /></div>
+    <div class="field"><label for="meHandle">Нікнейм</label><div class="at"><span>@</span><input id="meHandle" data-mefield="handle" maxlength="24"
+      value="${esc(f.handle)}" placeholder="olena.k" autocapitalize="none" autocomplete="off" /></div>
+      <div class="hint">Латиниця, цифри, крапка і _ — до 24 символів</div></div>
+    <div class="field"><label for="meCity">Місто</label><input id="meCity" data-mefield="city" maxlength="40" value="${esc(f.city)}" placeholder="Київ" /></div>
+    <div class="field"><label for="meBio">Про себе</label><textarea id="meBio" data-mefield="bio" maxlength="150" rows="3"
+      placeholder="Пишу сценарії про любов і Карпати">${esc(f.bio)}</textarea></div>
+    <div class="err" id="meErr"></div>
+    <button class="btn block" data-act="save-me" style="margin-top:8px">Зберегти</button>
+  `;
+}
+const cleanHandle = s => s.toLowerCase().replace(/[^a-z0-9._]/g, "").slice(0, 24);
+
+document.addEventListener("input", e => {
+  const k = e.target.dataset && e.target.dataset.mefield;
+  if (!k || !UI.meForm) return;
+  if (k === "handle") { const c = cleanHandle(e.target.value); if (c !== e.target.value) e.target.value = c; }
+  UI.meForm[k] = e.target.value;
+  const err = $("#meErr"); if (err) err.textContent = "";
+});
+ACTIONS["me-emoji"] = el => { UI.meForm.emoji = el.dataset.v; render(); };
+ACTIONS["me-color"] = el => { UI.meForm.color = +el.dataset.v; render(); };
+ACTIONS["save-me"] = () => {
+  const f = UI.meForm; if (!f) return;
+  const err = msg => { $("#meErr").textContent = msg; };
+  if (f.name.trim().length < 2) return err("Вкажіть ім'я — щонайменше 2 літери.");
+  if (f.handle.length < 3) return err("Нікнейм — щонайменше 3 символи.");
+  if (CREATORS.some(c => c.id !== "me" && c.handle === f.handle)) return err(`Нікнейм @${f.handle} уже зайнятий. Спробуйте інший.`);
+  S.me = { name: f.name.trim(), handle: f.handle, city: f.city.trim(), bio: f.bio.trim(), emoji: f.emoji, color: f.color };
+  UI.meForm = null; save(); syncMine(); toast("Профіль збережено"); goBack();
+};
+
+/* 18-submit.js — Подача серіалу: 4 кроки, чернетка, модерація, публікація в каталог */
+
+// ---------- Подача серіалу ----------
+// Кроки: 1 Основне → 2 Обкладинка → 3 Серії → 4 Умови. Чернетка зберігається на кожному
+// натисканні клавіші, тож закрити майстер і повернутись пізніше — безпечно.
+// Демо: заявка нікуди не надсилається, «модерація» — таймер CFG.MODERATION_SECONDS.
+const STEP_NAMES = ["Основне", "Обкладинка", "Серії", "Умови"];
+const SUB_EMOJI = ["🎬", "🌲", "🏔", "💔", "🕵️", "🔥", "🌊", "🐺", "✨", "🏙", "👑", "🚀"];
+const VOICES = { ua: "Українська озвучка", ai: "AI-озвучка", subs: "Оригінал + субтитри" };
+
+const draft = () => S.submissions.find(d => d.id === UI.draftId);
+
+function newSubmission() {
+  if (!S.me.handle) { toast("Спершу заповніть профіль"); return openPage("edit-me"); }
+  const d = { id: "my-" + Date.now().toString(36), status: "draft", step: 1, createdAt: Date.now(),
+    title: "", genre: "", desc: "", emoji: "🎬", color: 0, cover: "",
+    episodes: 12, minutes: 2, freeEps: CFG.FREE_EPS, voice: "ua", agreeOriginal: false, agreeRules: false };
+  S.submissions.push(d); save();
+  UI.draftId = d.id; openPage("submit");
+}
+ACTIONS["new-submission"] = newSubmission;
+
+// Перевірка кроку: порожній рядок — усе гаразд, інакше — що виправити.
+function stepError(d, step) {
+  if (step === 1) {
+    if (d.title.trim().length < 2) return "Дайте серіалу назву — щонайменше 2 символи.";
+    if (!d.genre) return "Оберіть жанр.";
+    if (d.desc.trim().length < 20) return "Опишіть історію — хоча б одне речення (20+ символів).";
+  }
+  if (step === 3) {
+    if (!(d.episodes >= 3 && d.episodes <= 100)) return "Кількість серій — від 3 до 100.";
+    if (!(d.minutes >= 1 && d.minutes <= 5)) return "Тривалість серії — від 1 до 5 хвилин.";
+    if (!(d.freeEps >= 1 && d.freeEps <= d.episodes)) return "Безкоштовних серій — від 1 до загальної кількості.";
+  }
+  if (step === 4 && !(d.agreeOriginal && d.agreeRules)) return "Підтвердьте обидва пункти, щоб надіслати.";
+  return "";
+}
+
+function renderSubmit(v) {
+  const d = draft();
+  if (!d || d.status !== "draft") { UI.page = null; return render(); }
+  const st = d.step;
+  const poster = `<div class="poster cover-prev" style="background:${grad({ colors: PALETTE[d.color] || PALETTE[0], cover: d.cover })}">
+      ${d.cover ? "" : `<span>${d.emoji}</span>`}<div class="p-title">${esc(d.title || "Назва серіалу")}</div></div>`;
+  let body;
+  if (st === 1) body = `
+    <div class="field"><label for="sTitle">Назва</label><input id="sTitle" data-sfield="title" maxlength="40" value="${esc(d.title)}" placeholder="Вовча стежка" /></div>
+    <div class="lbl">Жанр</div>
+    <div class="chips wrap">${GENRES.map(g => `<button class="chip ${g === d.genre ? "active" : ""}" data-act="s-genre" data-v="${g}">${g}</button>`).join("")}</div>
+    <div class="field"><label for="sDesc">Про що історія</label><textarea id="sDesc" data-sfield="desc" maxlength="220" rows="4"
+      placeholder="Лісничка з Карпат знаходить слід, якого не може бути…">${esc(d.desc)}</textarea>
+      <div class="hint"><span id="descN">${d.desc.length}</span>/220</div></div>`;
+  else if (st === 2) body = `
+    <div class="cover-row">${poster}
+      <div style="flex:1;min-width:0">
+        <div class="lbl" style="margin-top:0">Символ</div>
+        <div class="pick">${SUB_EMOJI.map(e => `<button class="pick-e ${e === d.emoji && !d.cover ? "on" : ""}" data-act="s-emoji" data-v="${e}">${e}</button>`).join("")}</div>
+        <div class="lbl">Колір</div>
+        <div class="pick">${PALETTE.map((p, i) => `<button class="sw ${i === d.color ? "on" : ""}" data-act="s-color" data-v="${i}"
+          style="background:linear-gradient(160deg, ${p[0]}, ${p[1]})" aria-label="Колір ${i + 1}"></button>`).join("")}</div>
+      </div>
+    </div>
+    <div class="lbl" style="margin-top:18px">Або власний постер</div>
+    <label class="upload">${ICONS.share} ${d.cover ? "Замінити зображення" : "Обрати зображення 9:16"}
+      <input type="file" accept="image/*" id="coverIn" hidden /></label>
+    ${d.cover ? `<button class="btn plain block" data-act="s-cover-remove">Прибрати постер</button>` : ""}
+    <p class="footnote" style="margin:10px 0 0">Демо: зображення зменшується до 360×640 і лишається на цьому пристрої.</p>`;
+  else if (st === 3) body = `
+    <div class="field-row">
+      <div class="field"><label for="sEp">Серій</label><input id="sEp" type="number" inputmode="numeric" min="3" max="100" data-sfield="episodes" value="${d.episodes}" /></div>
+      <div class="field"><label for="sMin">Хвилин на серію</label><input id="sMin" type="number" inputmode="numeric" min="1" max="5" data-sfield="minutes" value="${d.minutes}" /></div>
+    </div>
+    <div class="field"><label for="sFree">Безкоштовних серій на початку</label><input id="sFree" type="number" inputmode="numeric" min="1" data-sfield="freeEps" value="${d.freeEps}" />
+      <div class="hint">Далі глядач відкриває серії монетами (${CFG.EP_COST} за серію), рекламою або з Meri+</div></div>
+    <div class="lbl">Звук</div>
+    <div class="chips wrap">${Object.entries(VOICES).map(([k, n]) => `<button class="chip ${k === d.voice ? "active" : ""}" data-act="s-voice" data-v="${k}">${n}</button>`).join("")}</div>`;
+  else body = `
+    <div class="group">
+      <div class="list-row">${rowIco("coins", "#34c759")}<div style="flex:1">Ваша частка<div class="sub">Від реклами, монет і Meri+ за перегляди ваших серій</div></div><b style="color:var(--tint);font-size:20px">${CFG.AUTHOR_SHARE}%</b></div>
+      <div class="list-row">${rowIco("clock", "#ff9f0a")}<div style="flex:1">Модерація<div class="sub">Перевіряємо оригінальність і якість. Демо — ~${CFG.MODERATION_SECONDS} с</div></div></div>
+    </div>
+    <label class="check"><input type="checkbox" data-sfield="agreeOriginal" ${d.agreeOriginal ? "checked" : ""} />
+      <span>Це мій оригінальний серіал, і я маю права на все, що в ньому є</span></label>
+    <label class="check"><input type="checkbox" data-sfield="agreeRules" ${d.agreeRules ? "checked" : ""} />
+      <span>Без реклами азартних ігор, ненависті та чужого контенту</span></label>
+    <div class="sum">${poster}<div><b>${esc(d.title)}</b><div class="sub">${esc(d.genre)} · ${d.episodes} серій · ${VOICES[d.voice]}</div></div></div>`;
+
+  v.innerHTML = `
+    <div class="ig-bar page-bar">
+      <button class="ig-back" data-act="s-close" aria-label="Закрити і зберегти чернетку">${ICONS.close}</button>
+      <b class="pb-title">Новий серіал</b><span class="pb-right step-n">${st} / 4</span>
+    </div>
+    <div class="steps">${STEP_NAMES.map((_, i) => `<i class="${i < st ? "on" : ""}"></i>`).join("")}</div>
+    <h2 style="margin-top:14px">${STEP_NAMES[st - 1]}</h2>
+    ${body}
+    <div class="err" id="sErr"></div>
+    <div class="wiz-btns">
+      ${st > 1 ? `<button class="btn secondary" data-act="s-prev">Назад</button>` : `<button class="btn plain danger" data-act="s-delete">Видалити</button>`}
+      <button class="btn" data-act="s-next" style="flex:2">${st < 4 ? `Далі: ${STEP_NAMES[st].toLowerCase()}` : "Надіслати на модерацію"}</button>
+    </div>
+  `;
+  const fileIn = $("#coverIn");
+  if (fileIn) fileIn.addEventListener("change", async () => {
+    const f = fileIn.files && fileIn.files[0]; if (!f) return;
+    try { d.cover = await downscaleImage(f); save(); render(); }
+    catch { $("#sErr").textContent = "Не вдалося прочитати зображення. Спробуйте інше (JPG чи PNG)."; }
+  });
+}
+
+// Зменшує фото до 360×640 (обрізає по центру, як «cover») і повертає JPEG data-URL ~30–60 КБ,
+// щоб постер вміщався у сховище браузера.
+function downscaleImage(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const W = 360, H = 640, k = Math.max(W / img.width, H / img.height);
+      const c = document.createElement("canvas"); c.width = W; c.height = H;
+      c.getContext("2d").drawImage(img, (W - img.width * k) / 2, (H - img.height * k) / 2, img.width * k, img.height * k);
+      URL.revokeObjectURL(url); resolve(c.toDataURL("image/jpeg", 0.8));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("bad image")); };
+    img.src = url;
+  });
+}
+
+// Поля майстра пишуться в чернетку одразу, без перемальовування (щоб не губився курсор).
+function onSubmitField(e) {
+  const k = e.target.dataset && e.target.dataset.sfield; const d = k && draft();
+  if (!d) return;
+  if (e.target.type === "checkbox") d[k] = e.target.checked;
+  else if (e.target.type === "number") d[k] = Math.round(+e.target.value) || 0;
+  else d[k] = e.target.value;
+  if (k === "desc" && $("#descN")) $("#descN").textContent = d.desc.length;
+  const err = $("#sErr"); if (err) err.textContent = "";
+  save();
+}
+document.addEventListener("input", onSubmitField);
+document.addEventListener("change", e => { if (e.target.type === "checkbox") onSubmitField(e); });
+
+const pickDraft = (k, val) => { const d = draft(); if (!d) return; d[k] = val; save(); render(); };
+ACTIONS["s-genre"] = el => pickDraft("genre", el.dataset.v);
+ACTIONS["s-voice"] = el => pickDraft("voice", el.dataset.v);
+ACTIONS["s-color"] = el => pickDraft("color", +el.dataset.v);
+ACTIONS["s-emoji"] = el => { const d = draft(); if (d) d.cover = ""; pickDraft("emoji", el.dataset.v); };
+ACTIONS["s-cover-remove"] = () => pickDraft("cover", "");
+ACTIONS["s-prev"] = () => { const d = draft(); if (d && d.step > 1) { d.step--; save(); render(); $("#view").scrollTop = 0; } };
+ACTIONS["s-close"] = () => { toast("Чернетку збережено в «Моїх серіалах»"); UI.meTab = "mine"; goBack(); };
+ACTIONS["s-delete"] = () => {
+  const d = draft(); if (!d || !confirm("Видалити чернетку? Її не можна буде повернути.")) return;
+  S.submissions = S.submissions.filter(x => x.id !== d.id); save(); toast("Чернетку видалено"); goBack();
+};
+ACTIONS["s-next"] = () => {
+  const d = draft(); if (!d) return;
+  const err = stepError(d, d.step);
+  if (err) { $("#sErr").textContent = err; return; }
+  if (d.step < 4) { d.step++; save(); render(); $("#view").scrollTop = 0; return; }
+  d.title = d.title.trim(); d.desc = d.desc.trim();
+  d.status = "review"; d.submittedAt = Date.now(); save();
+  toast("Серіал надіслано на модерацію");
+  UI.meTab = "mine"; goBack(); scheduleModeration();
+};
+
+// ---------- Модерація (демо) ----------
+// Заявка «на модерації» стає опублікованою через CFG.MODERATION_SECONDS — навіть якщо
+// застосунок закрили: при наступному запуску перевірка спрацює одразу.
+function checkModeration() {
+  const now = Date.now(), done = [];
+  S.submissions.forEach(d => {
+    if (d.status === "review" && now >= d.submittedAt + CFG.MODERATION_SECONDS * 1000) {
+      d.status = "published"; d.publishedAt = now; done.push(d);
+    }
+  });
+  if (done.length) {
+    save(); syncMine();
+    toast(done.length === 1 ? `«${done[0].title}» опубліковано в Каталозі` : `Опубліковано серіалів: ${done.length}`);
+    if (UI.tab === "profile" || UI.tab === "catalog") render();
+  }
+  scheduleModeration();
+}
+function scheduleModeration() {
+  clearTimeout(scheduleModeration._t);
+  const next = S.submissions.filter(d => d.status === "review").map(d => d.submittedAt + CFG.MODERATION_SECONDS * 1000);
+  if (next.length) scheduleModeration._t = setTimeout(checkModeration, Math.max(250, Math.min(...next) - Date.now()));
 }
 
 /* 20-player.js — Плеєр: серії, замок, фінал, свайпи */
@@ -1492,10 +1932,12 @@ document.addEventListener("keydown", e => {
 
 // ---------- Делегування кліків ----------
 document.addEventListener("click", e => {
-  const el = e.target.closest("[data-tab],[data-go],[data-open],[data-play],[data-like],[data-save],[data-genre],[data-pack],[data-setting],[data-vote],[data-back],[data-close],[data-variant],[data-follow],[data-creator],[data-ctab],[data-share-creator]");
+  const el = e.target.closest("[data-tab],[data-go],[data-open],[data-play],[data-like],[data-save],[data-genre],[data-pack],[data-setting],[data-vote],[data-back],[data-close],[data-design],[data-follow],[data-creator],[data-ctab],[data-share-creator],[data-act],[data-page]");
   if (!el) { if (e.target.id === "modal") closeModal(); return; }
   const d = el.dataset;
-  if (d.tab) go(d.tab);
+  if (d.act) { if (ACTIONS[d.act]) ACTIONS[d.act](el, e); }
+  else if (d.page) openPage(d.page);
+  else if (d.tab) go(d.tab);
   else if (d.go) go(d.go);
   else if (d.play) { closeModal(); openPlayer(d.play, d.ep); }
   else if (d.open) { if (!$("#player").classList.contains("hidden")) closePlayer(); openDetail(d.open); }
@@ -1508,7 +1950,8 @@ document.addEventListener("click", e => {
   else if (d.genre) { if (UI.tab !== "catalog") { UI.tab = "catalog"; renderTabbar(); } UI.genre = d.genre; render(); }
   else if (d.pack) buyPack(+d.pack);
   else if (d.setting) { S.settings[d.setting] = !S.settings[d.setting]; save(); el.classList.toggle("on"); }
-  else if (d.variant) { S.design = d.variant; save(); applyVariant(); render(); }
+  // Не data-variant: цей атрибут має сам #app, і тоді будь-який клік «перемикав дизайн».
+  else if (d.design) { S.design = d.design; save(); applyVariant(); render(); }
   else if (d.vote !== undefined && !el.closest(".lock-screen")) { castVote(el); render(); }
   else if (d.follow) toggleFollow(d.follow);
   else if (d.shareCreator) shareCreator(d.shareCreator);
@@ -1525,6 +1968,8 @@ document.addEventListener("click", e => {
 if (EMBED) { document.documentElement.style.setProperty("--st", "54px"); document.documentElement.style.setProperty("--sb", "22px"); }
 $("#coinIco").innerHTML = COIN;
 applyVariant();
+syncMine();          // ваші опубліковані серіали — у каталог
+checkModeration();   // заявки, чия «модерація» минула, поки застосунок був закритий
 resetAdsIfNewDay();
 updateCoins();
 renderTabbar();
