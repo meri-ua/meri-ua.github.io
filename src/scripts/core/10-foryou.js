@@ -14,7 +14,7 @@ function renderForYou(v) {
       <div class="why">${esc(why)}</div>
       <h1>${esc(s.title)}</h1>
       <div class="desc">${esc(s.desc)}</div>
-      <div style="display:flex;gap:6px;margin-bottom:16px"><span class="chip">${s.genre}</span><span class="chip">★ ${s.rating}</span><span class="chip">UA озвучка</span></div>
+      <div style="display:flex;gap:6px;margin-bottom:16px"><span class="chip">${s.genre}</span><span class="chip">${ratingText(s)}</span><span class="chip">UA озвучка</span></div>
       <div class="actions">
         <button class="btn white" data-play="${s.id}" data-ep="${p ? p.ep : 1}">${ICONS.play.replace('class="i"', 'class="i" style="fill:currentColor;stroke:none;width:18px;height:18px"')} ${p ? `Серія ${p.ep}` : "Дивитись"}</button>
       </div>

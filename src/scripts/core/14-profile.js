@@ -1,18 +1,20 @@
-/* 14-profile.js — Екран «Профіль»: Meri+, оформлення, налаштування */
+/* 14-profile.js — Налаштування (⚙︎ у профілі): Meri+, оформлення, відтворення, історія */
 
-// ---------- Профіль ----------
-function renderProfile(v) {
+// ---------- Налаштування ----------
+function renderSettings(v) {
   const hist = [...S.history].reverse().slice(0, 8);
   const cur = URL_VARIANT || S.design;
   const sw = (key, label, icon, color) => `<div class="list-row">${rowIco(icon, color)}<div style="flex:1">${label}</div>
     <button class="switch ${S.settings[key] ? "on" : ""}" data-setting="${key}" aria-label="${label}"></button></div>`;
   v.innerHTML = `
+    ${pageBarHTML("Налаштування")}
     <div class="group" style="margin-top:8px">
-      <div class="list-row" style="padding:14px 16px">
-        <div class="avatar">Г</div>
-        <div style="flex:1"><b style="font-size:20px">Гість</b><div class="sub">Увійдіть, щоб синхронізувати перегляд</div></div>
+      <div class="list-row" data-page="edit-me" style="cursor:pointer">
+        ${meAvatarHTML("sm")}
+        <div style="flex:1">${esc(meName())}<div class="sub">Редагувати профіль</div></div>
         <span class="chev">›</span>
       </div>
+      <div class="list-row muted small">Вхід в акаунт і синхронізація між пристроями — з'являться разом із сервером</div>
     </div>
 
     <div class="sub-card" style="margin-top:16px">
@@ -25,7 +27,7 @@ function renderProfile(v) {
 
     <h3>Оформлення</h3>
     <div class="group">${VARIANTS.map(x => `
-      <div class="list-row" data-variant="${x.id}" style="cursor:pointer">
+      <div class="list-row" data-design="${x.id}" style="cursor:pointer">
         ${rowIco("palette", x.id === "ios" ? "#0a84ff" : x.id === "music" ? "#fa2d48" : "#5e5ce6")}
         <div style="flex:1">${x.name}<div class="sub">${x.hint}</div></div>
         ${x.id === cur ? `<span style="color:var(--tint);font-weight:700">✓</span>` : ""}
@@ -46,8 +48,8 @@ function renderProfile(v) {
 
     <h3>Для творців</h3>
     <div class="group">
-      <div class="list-row" id="creatorBtn" style="cursor:pointer">${rowIco("film", "#af52de")}
-        <div style="flex:1">Подати свій серіал<div class="sub">Частка доходу для незалежних авторів</div></div><span class="chev">›</span></div>
+      <div class="list-row" data-act="new-submission" style="cursor:pointer">${rowIco("film", "#af52de")}
+        <div style="flex:1">Подати свій серіал<div class="sub">Частка доходу ${CFG.AUTHOR_SHARE}% для незалежних авторів</div></div><span class="chev">›</span></div>
     </div>
 
     <div class="group" style="margin-top:28px">
@@ -55,8 +57,7 @@ function renderProfile(v) {
     </div>
     <p class="footnote" style="text-align:center">Meri.ua · MVP прототип<br/>версія ${esc(window.MERI_BUILD || "dev")}</p>
   `;
-  $("#subBtn").onclick = () => { S.sub = !S.sub; save(); toast(S.sub ? "Meri+ активовано (демо)" : "Підписку скасовано"); renderProfile(v); };
-  $("#creatorBtn").onclick = () => toast("Повідомимо, коли кабінет творця відкриється");
-  $("#resetBtn").onclick = () => { if (confirm("Скинути монети, історію та прогрес?")) { S = DEFAULT_STATE(); save(); applyVariant(); render(); toast("Дані скинуто"); } };
+  $("#subBtn").onclick = () => { S.sub = !S.sub; save(); toast(S.sub ? "Meri+ активовано (демо)" : "Підписку скасовано"); renderSettings(v); };
+  $("#resetBtn").onclick = () => { if (confirm("Скинути монети, історію та прогрес?")) { S = DEFAULT_STATE(); save(); syncMine(); applyVariant(); go("profile"); toast("Дані скинуто"); } };
 }
 

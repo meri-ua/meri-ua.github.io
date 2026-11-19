@@ -45,7 +45,8 @@ function renderCreator(v, c) {
     <div class="ig-type">${CREATOR_TYPES[c.type]} · ${esc(c.city)}</div>
     <div class="ig-bio">${esc(c.bio)}</div>
     <div class="ig-btns">
-      <button class="btn ${following ? "secondary" : ""}" data-follow="${c.id}">${following ? `${ICONS.check} Ви стежите` : "Стежити"}</button>
+      ${c.id === "me" ? `<button class="btn secondary" data-page="edit-me">Редагувати</button>`
+        : `<button class="btn ${following ? "secondary" : ""}" data-follow="${c.id}">${following ? `${ICONS.check} Ви стежите` : "Стежити"}</button>`}
       <button class="btn secondary" data-share-creator="${c.id}">${ICONS.share} Поділитися</button>
     </div>
     <div class="ig-tabs" role="tablist">
@@ -79,7 +80,8 @@ async function shareCreator(id) {
 
 // Рядок «Автори» в стилі сторіз (Каталог).
 function creatorsStoriesHTML() {
-  const order = [...CREATORS].sort((a, b) =>
+  // Ви — першим (як «Ваша історія» в Instagram), далі ще не переглянуті, далі — за підписниками.
+  const order = [...CREATORS].sort((a, b) => ((b.id === "me") - (a.id === "me")) ||
     (S.seenCreators.includes(a.id) - S.seenCreators.includes(b.id)) || (b.followers - a.followers));
   return `<div class="stories">${order.map(c => `
     <button class="story" data-creator="${c.id}">${avatarHTML(c, "md", true)}<span>${esc(c.name.replace(/^Студія «(.+)»$/, "$1"))}</span></button>`).join("")}</div>`;
@@ -92,7 +94,7 @@ function creatorRowHTML(c) {
     <div class="list-row" data-creator="${c.id}" style="cursor:pointer">
       ${avatarHTML(c, "sm")}
       <div style="flex:1;min-width:0">${esc(c.name)} ${verifiedHTML(c)}<div class="sub">@${esc(c.handle)} · ${fmtCount(st.followers)} підписників</div></div>
-      <button class="btn small-btn ${f ? "secondary" : ""}" data-follow="${c.id}">${f ? "Ви стежите" : "Стежити"}</button>
+      ${c.id === "me" ? `<span class="chip">Це ви</span>` : `<button class="btn small-btn ${f ? "secondary" : ""}" data-follow="${c.id}">${f ? "Ви стежите" : "Стежити"}</button>`}
     </div>
   </div>`;
 }

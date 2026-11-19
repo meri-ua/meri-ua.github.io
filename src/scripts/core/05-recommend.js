@@ -12,7 +12,7 @@ function recommend() {
     const g = genreW[s.genre] || 0;
     const p = S.progress[s.id];
     const finished = p && p.watched.length >= s.episodes;
-    let score = g * 3 + s.rating * 2 + Math.log10(s.views) + (s.isNew ? 1.5 : 0) - (finished ? 20 : 0);
+    let score = g * 3 + (s.rating || 0) * 2 + Math.log10(s.views + 1) + (s.isNew ? 1.5 : 0) - (finished ? 20 : 0);
     if (watchedIds.has(s.id) && !finished) score += 4; // продовжити
     const followed = S.following.includes(s.creatorId);
     if (followed && !finished) score += 3;             // автор, за яким стежиш
@@ -22,7 +22,7 @@ function recommend() {
     else if (g && lastSeenByGenre[s.genre] && lastSeenByGenre[s.genre].id !== s.id) why = `Бо вам сподобався «${lastSeenByGenre[s.genre].title}»`;
     else if (s.isNew) why = "Новинка тижня";
     else if (s.views > 2e6) why = "Популярне в Україні";
-    else why = `${s.genre} · ★ ${s.rating}`;
+    else why = `${s.genre} · ${ratingText(s)}`;
     return { s, score, why };
   }).sort((a, b) => b.score - a.score);
 }

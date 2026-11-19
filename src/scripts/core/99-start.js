@@ -4,6 +4,8 @@
 if (EMBED) { document.documentElement.style.setProperty("--st", "54px"); document.documentElement.style.setProperty("--sb", "22px"); }
 $("#coinIco").innerHTML = COIN;
 applyVariant();
+syncMine();          // ваші опубліковані серіали — у каталог
+checkModeration();   // заявки, чия «модерація» минула, поки застосунок був закритий
 resetAdsIfNewDay();
 updateCoins();
 renderTabbar();

@@ -18,6 +18,8 @@ const DEFAULT_STATE = () => ({
   seenCreators: [],   // чиї сторінки вже відкривали (сіре кільце в рядку «Автори»)
   history: [],        // [{id, ep, ts}]
   votes: {},          // {seriesId: optionIndex}
+  me: { name: "", handle: "", city: "", bio: "", emoji: "🎬", color: 0 }, // ваш профіль (17-me.js)
+  submissions: [],    // подані серіали: чернетка → модерація → опубліковано (18-submit.js)
   sub: false,
   settings: { autoplay: true, subs: true, adsPersonal: false },
   design: "glass"
@@ -34,7 +36,9 @@ const save = () => { if (!EMBED) try { localStorage.setItem(STORE_KEY, JSON.stri
 
 // detail — відкритий серіал, creator — відкритий автор (одночасно лише щось одне);
 // stack — куди повертає «назад» (напр., серіал → автор → назад до серіалу).
-let UI = { tab: params.get("tab") || "foryou", genre: "Усі", query: "", detail: null, creator: null, creatorTab: "series", stack: [] };
+let UI = { tab: params.get("tab") || "foryou", genre: "Усі", query: "", detail: null, creator: null, creatorTab: "series", stack: [],
+           page: null,        // підсторінка профілю: "settings" | "edit-me" | "submit"
+           meTab: "mine", draftId: null };
 const TITLES = { foryou: "", catalog: "Каталог", my: "Мої серіали", coins: "Монети", profile: "Профіль" };
 const TAB_NAMES = { foryou: "Для тебе", catalog: "Каталог", my: "Медіатека", coins: "Монети", profile: "Профіль" };
 

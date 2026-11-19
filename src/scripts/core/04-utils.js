@@ -7,8 +7,11 @@ const creatorById = id => CREATORS.find(c => c.id === id);
 const creatorOf = s => creatorById(s.creatorId);
 const seriesOf = c => SERIES.filter(s => s.creatorId === c.id);
 const esc = str => String(str).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const grad = s => `linear-gradient(160deg, ${s.colors[0]}, ${s.colors[1]})`;
-const fmtViews = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace(".0", "") + " млн" : Math.round(n / 1e3) + " тис";
+// Фон серіалу: власний постер (якщо автор завантажив) поверх градієнта.
+const grad = s => (s.cover ? `url('${s.cover}') center/cover no-repeat, ` : "") + `linear-gradient(160deg, ${s.colors[0]}, ${s.colors[1]})`;
+const fmtViews = n => n < 1e3 ? String(n) : n >= 1e6 ? (n / 1e6).toFixed(1).replace(".0", "") + " млн" : Math.round(n / 1e3) + " тис";
+// У нового серіалу ще нема оцінок — пишемо «Новий», а не «★ 0».
+const ratingText = s => s.rating ? `★ ${s.rating}` : "Новий";
 const hash = str => [...str].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
 
 function toast(msg) {
@@ -21,7 +24,9 @@ function resetAdsIfNewDay() {
   if (S.ads.date !== today()) { S.ads = { date: today(), count: 0, last: 0 }; save(); }
 }
 
-const isUnlocked = (s, ep) => ep <= CFG.FREE_EPS || S.sub || (S.unlocked[s.id] || []).includes(ep);
+// Безкоштовні серії: своя кількість у серіалу (автор задає при подачі) або загальна CFG.FREE_EPS.
+const freeEpsOf = s => s.freeEps || CFG.FREE_EPS;
+const isUnlocked = (s, ep) => ep <= freeEpsOf(s) || S.sub || (S.unlocked[s.id] || []).includes(ep);
 const watchedOf = id => (S.progress[id] && S.progress[id].watched) || [];
 const toggleIn = (arr, v) => arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v];
 

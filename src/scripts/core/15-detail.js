@@ -24,7 +24,7 @@ function renderDetail(v, s) {
       <button class="back" data-back aria-label="Назад">${ICONS.back}</button>
       <div class="emoji">${s.emoji}</div>
       <h1>${esc(s.title)}</h1>
-      <div class="small">${s.genre} · ★ ${s.rating} · ${s.episodes} серій · ${fmtViews(s.views)} переглядів</div>
+      <div class="small">${s.genre} · ${ratingText(s)} · ${s.episodes} серій · ${fmtViews(s.views)} переглядів</div>
     </div>
     <div class="detail-actions">
       <button class="btn" style="flex:1" data-play="${s.id}" data-ep="${p ? p.ep : 1}">${p ? `Продовжити · серія ${p.ep}` : "Дивитись"}</button>
